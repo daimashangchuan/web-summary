@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			b();
+			console.log(a);
+			var a = 'hello world';
+			function b(){
+				console.log('call,b')
+			}
+		</script>
+		
+		
+		<script type="text/javascript">
+			let aa = {
+				value:1
+			}
+			function getValue(name,age){
+				console.log(name);
+				console.log(age);
+				console.log(this.value);
+			}
+			getValue.call(aa,'sunjiwei','24');
+			getValue.apply(aa,['sunjiwei','24']);
+		</script>
+		
+		
+		<script type="text/javascript">
+			var length = 10;
+			function fn(){
+				console.log(this.length)
+			}
+			var obj = {
+				length:5,
+				method:function(fn){
+					fn();
+					arguments[0](); 
+				}
+			}
+			obj.method(fn,1)      //  10   2
+		</script>
+		
+		
+		<script type="text/javascript">
+			function JSClass(){
+				this.m_text = 'division element';
+				this.m_Element = document.createElement('div');
+				this.m_Element.innerHTML = this.m_Text;
+				this.m_Element.addEventListener('click',this.func);
+			}
+			JSClass.prototype.Render = function(){
+				document.body.appendChild(this.m_Element);
+			}
+			JSClass.prototype.func = function(){
+				alert(this.m_Text)
+			}
+			var jc = new JSClass();
+			jc.Render();   //  undefined   
+			jc.func();    //  undefined   
+		</script>
+	</body>
+</html>

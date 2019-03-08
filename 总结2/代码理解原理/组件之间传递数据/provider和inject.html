@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="vue.min.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			
+		</div>
+		<script type="text/javascript">
+			Vue.component('child',{
+		        inject:['for'],//得到父组件传递过来的数据
+		        data(){
+		            return {
+		                mymessage:this.for
+		            }
+		        },
+		        template:`
+		            <div>
+		                <input type="tet" v-model="mymessage"> 
+		            </div>
+		            `
+		    })
+		    Vue.component('parent',{
+		        template:`
+		            <div>
+		                <p>this is parent compoent!</p>
+		                <child></child>
+		            </div>
+		        `,
+		        provide:{
+		            for:'test'
+		        },
+		        data(){
+		            return {
+		                message:'hello'
+		            }
+		        }
+		    })
+		    var app=new Vue({
+		        el:'#app',
+		        template:`
+		            <div>
+		                <parent></parent>
+		            </div>
+		        `
+		    })
+		</script>
+	</body>
+</html>

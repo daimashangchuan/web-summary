@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>程序题2</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var a = 10;
+			function MyObject(){}
+			MyObject.prototype.show = function(){
+				var ta = this.a || a;
+				console.log(ta)
+			}
+			MyObject.prototype.a = 7;
+			var newobj = new MyObject();
+			newobj.a = 5;
+			newobj.show();  // 5 
+			MyObject.prototype.show();  // 7 
+			var s = new newobj.show  // 10
+		</script>
+		
+		
+		<script type="text/javascript">
+			var length = 5;
+			function oo(){
+				var length = 10;
+				function fn(){
+					console.log(this.length)
+				};
+				var obj = {
+					length:5,
+					method:function(fn){
+						fn();
+						arguments[0](); 
+					}
+				}
+				obj.method(fn,1);
+			}
+			oo();  // 5  2 
+			oo.fn()  //  报错  
+		</script>
+		
+		<script>
+			console.log('******************************')
+			function Foo(){
+				getName = function(){console.log(1)};
+				return this
+			};
+			Foo.getName = function(){console.log(2)};
+			Foo.prototype.getName = function(){console.log(3)};
+			var getName = function(){console.log(4)};
+			function getName(){console.log(5)}
+			
+			Foo.getName();  // 2
+			getName();  // 4
+			Foo().getName();  // 1
+			getName();   //  1
+			new Foo.getName();  // 2
+			new Foo().getName();  // 3
+		</script>
+		
+		
+		<script>
+			console.log('****************************')
+			var arr = [2,3,4,5,6];
+			var sum = 0;
+			for (var i=1; i<arr.length; i++) {
+				sum += arr[i];
+			}
+			console.log(sum);
+		</script>
+		
+		
+		<script type="text/javascript">
+			function test(m){
+				m = {
+					v:5
+				}
+			}
+			var m = {
+				k:30
+			}
+			test(m)
+			console.log(m.v)  // undefined
+		</script>
+	</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        JSON.stringify(value[,replacer][,space])  
+        将对象，数组转化为字符串
+        JSON.parse(text [, reviver])
+        将字符串转化为数组或对象
+
+        eval()函数可以将字符串转化为js对象
+        var obj = eval(str)
+     -->
+    <script>
+        var oidObject = 'sadasda';
+        var newObject = JSON.parse(JSON.stringify(oidObject))
+        console.log(newObject)
+
+        var a = 'aaabbb';
+        function cp(a){
+            return JSON.parse(JSON.stringify(a))
+        }
+        console.log(cp(a))
+        
+        
+        
+        //  合并对象 key 值相同有覆盖性     或     克隆对象   
+        var target = { a: 1, b: 1 };
+        target[0]=123
+		var source1 = { b: 2, c: 2 };
+		var source2 = { c: 3 };
+		Object.assign(target, source1, source2); 
+		console.log(target)
+		
+		
+		console.log(parseInt('10/01/2011'))
+    </script>
+</body>
+</html>

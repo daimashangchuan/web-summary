@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 一行省略号 -->
+    <p style="width:200px;white-space: nowrap;text-overflow:ellipsis;overflow:hidden;">我武汉东方店hi肉肉肉团阿斯达萨顶顶发感染他人山东省hi肉肉肉团阿斯达萨顶顶发感染他人山东省地方反地方反而</p>
+
+
+
+    <!-- 
+        text-overflow属性  值 clip | ellipsis默认为clip
+        clip 超出裁剪掉
+        ellipsis：超出显示变为省略号
+     -->
+     <p style="width:200px;white-space: nowrap;text-overflow:clip;overflow:hidden;">我武汉东方店hi肉肉肉团阿斯达萨顶顶发感染他人山东省地方反而</p>
+
+     <!-- 
+        white-space：normal | pre | nowrap | pre-wrap | pre-line 默认值为normal
+        pre：用等宽字体显示预先格式化的文本，不合并文字间的空白距离，当文字超出边界时不换行
+      -->
+      <!-- 
+        display: -webkit-box; 将元素作为弹性伸缩盒子模型。
+        -webkit-box-orient: vertical; 设置伸缩盒子对象的子元素的排列方式。
+        text-overflow:ellipsis; 指定多行文本的情况下，使用省略号显示超出范围的文本。
+        -webkit-line-clamp: 2; 含义是超出2行后的文字 使用省略号来显示；
+       -->
+       <p style="width:200px;text-overflow:ellipsis;display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;overflow:hidden;">我武汉东方店hi肉肉肉团i肉肉肉团阿斯达萨顶顶发感染他人山东i肉肉肉团阿斯达萨顶顶发感染他人山东阿斯达萨顶顶发感染他人山东省地方反而</p>
+</body>
+</html>

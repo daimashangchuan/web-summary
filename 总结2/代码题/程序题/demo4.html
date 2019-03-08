@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var aa = 5;
+			var bb = 3;
+			/*cc = aa+bb;
+			aa = cc - aa;
+			bb = cc - bb;*/
+			
+			[aa,bb] = [bb,aa]
+		</script>
+		
+		
+		<script type="text/javascript">
+			function Foo(){
+				return this;  //  window 
+			}
+			Foo.getName = function(){
+				console.log('1');
+			}
+			Foo.prototype.getName = function(){
+				console.log('2')
+			}
+			new Foo.getName()
+			new Foo().getName()
+		</script>
+		
+		
+		<script type="text/javascript">
+			function a(){
+				return ()=>{
+					return ()=>{
+						console.log(this)
+					}
+				}
+			}
+			console.log(a()())
+		</script>
+		
+	</body>
+</html>

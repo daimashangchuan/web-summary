@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>瀑布流效果实现</title>
+    <script type="text/javascript">
+        window.onload=function(){
+            //获取父级对象
+            var oParent = document.getElementById("main");
+            //获取父级[第一个参数]下的所有的子元素[按照第二个参数匹配]
+            var aPin = getClassObject(oParent,"pin");
+            //获取每一个块的宽度
+            var iPinW = aPin[0].offsetWidth;
+            // 计算每行放多少个pin(瀑布流块)页面的宽度/每一个瀑布流块的宽度
+            var num = Math.floor(document.documentElement.clientWidth/iPinW);
+            //重置父级的样式,这样保证图片整体居中
+            oParent.style.cssText="width:" + num*iPinW + "px;margin:0 auto;";
+            
+            var compareArray = [];
+            //遍历获取到的所有瀑布流块
+            for (var i = 0; i<aPin.length; i++) {
+                if(i<num){
+                    //成行元素
+                    compareArray[i] = aPin[i].offsetHeight;
+                }else{
+                    //获取成行元素中高度最低的值
+                    var minHeight = Math.min.apply('',compareArray);
+                    //alert(compareArray + ",min=" + minHeight);
+                    //获取成行元素中高度最低元素的索引
+                    var minHkey = getMinHeightKey(compareArray,minHeight);
+                    //为新增的瀑布流块设置定位
+                    aPin[i].style.position = "absolute";
+                    aPin[i].style.top = minHeight + "px";
+                    //设定新增加的瀑布流块的top和left
+                    aPin[i].style.left =aPin[minHkey].offsetLeft + "px";
+                    //将该索引位置的高度改变为新增后的高度[原来瀑布流块的高度+新增的瀑布流块的高度]
+                    compareArray[minHkey] += aPin[i].offsetHeight;
+                }
+                
+            }
+
+        }
+        /**
+         *     获取parent下所有样式名为className的对象集合
+         */
+        function getClassObject(parent,className){
+            var obj = parent.getElementsByTagName("*");
+            var result = [];
+            for(var i=0; i<obj.length;i++){
+                //变量如果匹配className,将匹配的对象放入数组
+                if(obj[i].className==className){
+                    result.push(obj[i]);
+                }
+            }
+            return result;
+        }
+
+        /**
+         *    获取arr数组中值为minH的值在数组中的索引
+         */
+        function getMinHeightKey(arr,minH){
+            for(key in arr){
+                if(arr[key] == minH){
+                    return key;
+                }
+            }
+        }
+    </script>
+    <style type="text/css">
+        /*设置每一个瀑布流块*/
+        #main .pin{
+            width:220px;
+            height: auto;
+            padding: 15px 0px 0px 15px; /*上 右 下 左*/
+            float: left;
+        }
+        /*设置每一个瀑布流块中的图像样式*/
+        #main .pin .box{
+            width: 200px;
+            height: auto;
+            padding: 10px;
+            background: #FFF;
+            border: 1px solid #ccc;
+            box-shadow: 0px 0px 6px #ccc; /*中间投影*/
+            border-radius: 5px; /*圆角*/
+        }
+        #main .pin .box img{
+            width: 200px;
+			
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <!--每一个小块-->
+        <div class="pin">
+            <div class="box">
+                <img src="images/as7.jpg">
+            </div>
+        </div>
+
+        <!--每一个小块-->
+        <div class="pin">
+            <div class="box">
+                <img src="images/as8.jpg">
+            </div>
+        </div>
+
+        <!--每一个小块-->
+        <div class="pin">
+            <div class="box">
+                <img src="images/as9.jpg">
+            </div>
+        </div>
+
+        <!--每一个小块-->
+        <div class="pin">
+            <div class="box">
+                <img src="images/b1.jpg">
+            </div>
+        </div>
+
+        <!--每一个小块-->
+        <div class="pin">
+            <div class="box">
+                <img src="images/b11.png">
+            </div>
+        </div>
+
+        <!--每一个小块-->
+        <div class="pin">
+            <div class="box">
+                <img src="images/as9.jpg">
+            </div>
+        </div>
+
+        <!--每一个小块-->
+        <div class="pin">
+            <div class="box">
+                <img src="images/b12.jpg">
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

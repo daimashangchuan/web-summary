@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			//  当前日期格式转化
+			var myDate = new Date();
+			document.write(myDate.toLocaleDateString()+ '\t');  //   年月日
+        	document.write(myDate.toLocaleTimeString() + '<br>');  //    时分秒
+		</script>
+		
+		<script>
+			getFullYear年        getMonth月        getDate日        getHours时         getMinutes分        getSeconds秒
+			var v = 45446464387;
+			function createTime(msec,select){
+			    var date = new Date(msec);
+			    var y = date.getFullYear(); 
+			    var m = date.getMonth()+1;  
+			    m = m<10?'0'+m:m;         
+			    var d = date.getDate();       
+			    d = d<10?("0"+d):d;
+			    var h = date.getHours();
+			    h = h<10?("0"+h):h;
+			    var M = date.getMinutes();
+			    M = M<10?("0"+M):M;
+			    var s = date.getSeconds();
+			    s = s<10?("0"+s):s;
+			    if (select) {
+			    	var str = y+"-"+m+"-"+d+" "+h+":"+M+":"+s;
+			    } else{
+			    	var str = y+"年"+m+"月"+d+"日	"+h+":"+M+":"+s;
+			    }
+			    
+			    return str;
+			}
+			console.log(createTime(v,true))
+		</script>
+	</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>  
+     console.log(parseInt ("4F", 18))
+    //  变量优先级高于函数
+    //  变量没有赋值  优先级为就近原则  
+        var b;
+        function b(){}
+        console.log(typeof b); //  function
+
+
+        var c = 1
+        function c(c) {
+            console.log(c)
+            var c = 3
+        }
+        console.log(c) // 1
+        console.log(typeof c) //  number
+        // c(2)  //  报错   
+
+
+        function fn(a) {
+            console.log(a);     // function a() {alert(1)}
+            var a = 2;
+            function a() {alert(1)}
+            console.log(a);     //2
+        }
+        fn(1);  
+
+
+        // async与await的执行
+        async function sayHello() {
+            console.log('Hello')
+            await sleep(1000)
+            console.log('world!')
+        }
+        function sleep(ms) {
+        　  return new Promise(resolve =>  {
+        　　    console.log("666666");
+        　　    setTimeout(resolve, ms);
+        　　    console.log("888888")
+            })
+        }
+        sayHello();　　// hello 666666 888888 world!
+    </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>简单代码</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			console.log(1,...[2,3,4,5,6],7); //  1，2，3，4，5，6，7
+			
+			console.log(1 == true);  // true
+			console.log(2 == true);  // false
+			console.log(1 == '1');   // true
+			console.log(1 == 'true');   // false
+			console.log(0 == 'false');  // false
+			console.log('1' == true);   // true  
+			console.log('0' == false);  // true
+			console.log(!![]);   // true
+			console.log([] == []);  // false
+			console.log('****************************')
+			console.log(1 === true);  // false
+			console.log(2 === true);  // false
+			console.log(1 === '1');   // false
+			console.log(1 === 'true');   // false
+			console.log(0 === 'false');  // false
+			console.log('1' === true);   // false
+			console.log('0' === false);  // false
+			console.log(!![]);   // true
+			console.log([] === []);  // false
+			
+			console.log('*********************************')
+			
+			console.log(typeof null)  //  object
+			console.log(typeof NaN)   // number
+			console.log(NaN == undefined)  // false
+			console.log(NaN == NaN)    //  false
+			
+			
+			
+			
+			console.log('**************')
+			console.log(Function instanceof Object)
+			console.log([].construction === Array)
+			
+			
+			
+			function num(){
+				console.log(10)
+				return 1+1
+			}
+			setTimeout(num,1000);
+			
+			
+			
+			console.log(''||'abc')
+			
+			
+			console.log([1,2,3] == [1,2,3])
+			console.log([1,2,3] === [1,2,3])
+			
+			
+			console.log('*********************')
+			console.log(['1','2','3'].map(parseInt))   //  1,NaN,NaN
+			
+			console.log([1,2,3,4].join('0').split(''))
+			
+			console.log('13'>'7')  //  false
+		</script>
+	</body>
+</html>

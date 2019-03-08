@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul>
+		    <li></li>
+		    <li></li>
+		    <li></li>
+		    <li></li>
+		    <li></li>
+		    <li></li>
+		    <li></li>
+		    <li></li>
+		    <li></li>
+		    <li></li>
+		</ul>
+		<script>
+			var arrli = document.getElementsByTagName('li');	
+			var arr = [];
+			
+			//  循环转变 
+			/*for (var i=0; i<arrli.length; i++) {
+				arr.push(arrli[i]);
+			}*/
+			
+			
+			//  原型继承与改变this指向
+			//arr = Array.prototype.slice.call(arrli)
+			
+			
+			//  es6  Array.from() 类数组对象也可以转化 
+			//arr = Array.from(arrli);
+			
+			
+			//  es6     扩展符
+			arr = [...arrli];
+			console.log(arr);
+			arr.pop();
+			console.log(arr);
+		</script>
+	</body>
+</html>

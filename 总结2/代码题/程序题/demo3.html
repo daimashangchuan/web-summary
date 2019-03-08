@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			var name = 'window';
+			var obj = {
+				name :'child',
+				getName:function(){
+					return this.name;
+				}
+			}
+			var func = obj.getName;
+			console.log(func())  // window
+		</script>
+		
+		
+		<script>
+			var name = 'World';
+			(function(){
+				if (typeof name === 'undefined') {
+					var name = 'Jack';
+					console.log('Goodbye'+name);   //  Goodbye Jack
+				} else{
+					console.log('Hello'+name);
+				}
+			})()
+		</script>
+		
+			
+		<script>
+			var func = (function(a){
+				this.a = a;
+				return function (a){
+					a+=this.a;
+					return a;
+				}
+			})(function (a,b){
+				return a;
+			}(1,2))
+			console.log(func(4)); // 5			
+		</script>
+		
+			
+		<script>
+			var i = 10;
+			reg = /a/g;
+			while(i--){
+				setTimeout(function(){
+					console.log(i,reg.test('abc'))
+				},0)
+			}
+		</script>
+		
+		
+		
+	</body>
+</html>

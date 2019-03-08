@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var a = 'a';
+        // 获取Unicode编码
+        var code = a.charCodeAt(0); // 97
+        // 根据Unicode编码获取字符
+        var str = String.fromCharCode(code);  // a
+        console.log(code,str)
+        // 转化为二进制
+        var bianma = code.toString(2); // 1100001
+        console.log(bianma)
+    </script>
+</body>
+</html>

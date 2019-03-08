@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			var arr = [10,2,,2,3,,5,6,5,4,,1,2,4,5,,6,24,8];
+			var arr1 = [2,2,2,2,5,5,5,6,6,6,88,9,9,88,10]
+			
+			//  双for循环
+			function arrayToRepeat(arr){
+				var newArr = [];
+				for (var i= 0; i < arr.length; i++) {
+					for (var j = 0; j<newArr.length; j++) {
+						if (arr[i] == newArr[j]) {
+							break;
+						}
+					}
+					if (j == newArr.length) {
+						newArr.push(arr[i]);
+					}
+				}
+				return newArr;
+			}
+			console.log(arrayToRepeat(arr));
+		
+		
+			// 用indexOf来去重
+			function arrayToUnique(arr){
+			   	var newArr = [];
+			    for (var i = 0; i < arr.length; i++) {
+			      	if (newArr.indexOf(arr[i]) == -1 ) {
+			       		newArr.push(arr[i]);
+			    	}
+			    }
+			    return newArr;
+			}
+			console.log(arrayToUnique(arr));
+		
+		
+			// es6 方法去重    可以去除NaN
+		    var newArr1=Array.from(new Set(arr));
+		    console.log(newArr1);		
+		    var newArr2= [...new Set(arr)];
+		    console.log(newArr2);
+		</script>
+	</body>
+</html>

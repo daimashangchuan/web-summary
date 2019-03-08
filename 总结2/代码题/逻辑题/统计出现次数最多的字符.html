@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			var str = 'aaaaaaaassssssssssddddddvvccbbnnkmkxccaaaaaaaa'
+			function numSrt(str){
+				var obj = {},max = 0,maxno = '';
+				for (var i=0; i<str.length; i++) {
+					if (!obj[str.charAt(i)]) {
+						obj[str.charAt(i)] = 1
+					} else{
+						obj[str.charAt(i)]++
+					}
+				}
+				for (var k in obj) {
+					if (obj[k] > max) {
+						max = obj[k];
+						maxno = k;
+					}
+				}
+				return {max,maxno};
+			}
+			console.log(numSrt(str))
+		</script>
+	</body>
+</html>

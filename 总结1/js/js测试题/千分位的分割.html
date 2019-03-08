@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>  
+    <script>
+        function rmb(num) {       	
+            return num && num.toString().replace(/(\d)(?=(\d{3})+\.)/g, function($0, $1) {
+                return $1+ ",";
+            });
+        }
+        console.log(rmb(-1234567.9012));  // -1,234,567.9012
+    </script>
+</body>
+</html>
+

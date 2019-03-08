@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 插入图片文件 -->
+    <!-- <style>
+        .example:before{
+            content:url("file:///F:/web/新建文件夹/前端/前端复习笔记/img/1.png");
+        }
+        .example:after{
+            content: "@";
+        }
+    </style> -->
+
+    <!-- 插入指定编号种类  默认为数字 -->
+    <style>
+        h2:before{
+            content:counter(mycounters)".";
+        }
+        h2{
+            counter-increment:mycounters;
+        }
+        h1:before{
+            content:counter(mycounter,upper-alpha);
+            color:red;
+            font-size:36px;
+        }
+        h1{
+            counter-increment:mycounter;
+        }
+        p:before{
+            content:counter(longen,upper-roman);
+            color:blue;
+            font-size:36px;
+        }
+        p{
+            counter-increment:longen;
+        }
+    </style>
+</head>
+<body>
+    <!-- 插入图片文件 -->
+    <!-- <div class="example">example</div>
+    <div class="example sample">example</div>
+    <div class="example">example</div> -->
+
+
+    <!-- 
+        插入指定编号种类
+        content: counter(计算器名，编号种类) 语法 
+    -->
+    <h1>我想解决单身问题</h1>
+    <p>可惜我不帅...没有女孩喜欢我....</p>
+    <h1>我想解决单身问题</h1>
+    <p>可惜我不帅...没有女孩喜欢我....</p>
+    <h1>我想解决单身问题</h1>
+    <p>可惜我不帅...没有女孩喜欢我....</p>
+    <h2>我想解决单身问题</h2>
+    <h2>我想解决单身问题</h2>
+    <h2>我想解决单身问题</h2>
+</body>
+</html>

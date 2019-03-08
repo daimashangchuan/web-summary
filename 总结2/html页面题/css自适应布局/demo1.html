@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .l-box{
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: blue;
+        }
+        .main{
+            margin-left: 200px;
+            margin-right: 200px;
+            height: 200px;
+            background-color: green;
+        }
+        .r-box{
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <!-- 左右采用浮动  中间采用margin-left和margin-right方法 -->
+     <div style="width: 100%;margin: 0 auto;">
+        <div style="width: 200px;float: left; background-color:red;">右侧的内容固定宽度</div>
+        <div style="width: 200px;float: right; background-color:blue;">左侧的内容固定宽度</div>
+        <div style="margin-left:200px;margin-right:200px; background-color:#9F3">中间内容，自适应宽度</div>
+    </div> 
+
+
+    <!-- 左右两侧采用绝对定位 中间同样采用margin-left margin-right方法 -->
+    <!--<div class="l-box"></div>
+    <div class="main"></div>
+    <div class="r-box"></div>-->
+</body>
+</html> 

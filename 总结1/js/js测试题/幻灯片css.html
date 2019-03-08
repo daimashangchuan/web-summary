@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>css实现幻灯片</title>
+	<style type="text/css">
+	.slide2-con{margin: 0 auto; width:400px;}
+	.slide2-con .slide2-box{width:400px; height: 400px; overflow: hidden; margin: 20px auto;}
+	.slide2-con .slide2-box div{width:400px; height: 400px;}
+	.slide2-con .slide2-box div img{height: 400px;}
+	.slide2-nav a{display:inline-block; *display:inline; *zoom:1; width:40px; height: 40px; margin-top: 20px;}
+	.slide2-nav img{width:40px; height: 40px;}
+	</style>
+</head>
+<body>
+	<div class="slide2-con">
+		<div class="slide2-box">
+			<div id="a1">
+				<img src="../../img/00.png"/>
+			</div>
+			<div id="a2">
+				<img src="../../img/96e60dfe80006fe9244914b0fd2a8ccb.png"/>
+			</div>
+			<div id="a3">
+				<img src="../../img/00.png"/>
+			</div>
+			<div id="a4"></div>
+		</div>
+		<div class="slide2-nav clearfix">
+			<a href="#a1"><img src="../../img/00.png"/></a>
+			<a href="#a2"><img src="../../img/96e60dfe80006fe9244914b0fd2a8ccb.png"/></a>
+			<a href="#a3"><img src="../../img/00.png"/></a>
+			<a href="#a4">关闭</a>
+		</div>
+		<div class="clear"></div>
+	</div>
+</body>
+</html>

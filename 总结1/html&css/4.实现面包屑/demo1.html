@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{ margin:0; padding:0;}
+        ul,li{list-style:none;}
+        .box{position:relative;margin:100px auto;background:#ccc;width:600px;height:32px;line-height:32px;overflow:hidden;}
+        .box li{float:left;width:200px;text-align:center;position:relative;z-index:2;}
+        .box li em{width:0;height:0;border-color:transparent transparent transparent #fff;border-style:dashed dashed dashed solid;border-width:24px 0 24px 24px;position:absolute;right:-24px;top:-8px;line-height:0;font-size:0;}
+        .box li i{width:0;height:0;border-color:transparent transparent transparent #ccc;border-style:dashed dashed dashed solid;border-width:16px 0 16px 16px;position:absolute;right:-16px;top:0;line-height:0;font-size:0;}
+        .box li.current{background:#933;z-index:1;}
+        .box li.current i{border-color:transparent transparent transparent #933;}
+    </style>
+</head>
+<body>
+    <div class="box">
+       <ul>
+            <li>gggg<em></em><i></i></li>
+            <li class="current">gggg<em></em><i></i></li>
+            <li>gggg<em></em><i></i></li>
+       </ul>
+    </div>
+</body>
+</html>

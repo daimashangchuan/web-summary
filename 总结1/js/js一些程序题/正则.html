@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- js计算1-1000中出现的0的次数 -->
+    <script>
+        new Array(10000).fill('').map((_,index)=>index+1).filter(item=>/0/.test(item)).reduce((count,item)=>{
+            return count+(String(item).match(/0/g) || []).length
+        },0)
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var module = {
+            x: 42,
+            getX: function() {
+                return this.x;
+            }
+        }
+        var fn = module.getX;
+        var fun = module.getX.bind(module);
+        console.log(module.getX())
+        console.log(fn())
+        console.log(fun())
+    </script>
+</body>
+</html>

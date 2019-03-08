@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var obj = {name:'sunjiwei',age:'24'};
+        var arr = [1,2,5,'fhf'];
+        var num = 12;
+        var str = 'sunjiwei';
+        Object.prototype.clone = function(){
+            var o = this.constructor === Array ? [] : {};
+            for(var e in this){
+                o[e] = typeof this[e] === "object" ? this[e].clone() : this[e];
+            }
+            return o;
+        }
+
+        function clone(Obj) {  
+            var buf;  
+            if (Obj instanceof Array) {  
+                buf = [];//创建一个空的数组
+                var i = Obj.length;  
+                while (i--) {  
+                    buf[i] = clone(Obj[i]);  
+                }  
+                return buf;   
+            }else if (Obj instanceof Object){  
+                buf = {};//创建一个空对象
+                for (var k in Obj) { //为这个对象添加新的属性
+                    buf[k] = clone(Obj[k]);  
+                }  
+                return buf;  
+            }else{ //普通变量直接赋值
+                return Obj;  
+            }  
+        }
+    </script>
+</body>
+</html>

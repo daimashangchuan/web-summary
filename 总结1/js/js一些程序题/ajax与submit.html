@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        method   请求的方式
+        url      路径
+        data     向后台传送的数据
+        fnSucc   请求成功返回的函数
+     -->
+    <script>
+        function ajax(method,url,data,fnSucc,fnFaild){
+            //  创建ajax实例
+            try {
+                var xml = XMLHttpRequest();
+            } catch (e) {
+                var xml = ActiveXObject('Microsoft.XMLHTTP');
+            }
+            //  连接服务器与发送请求
+            if (method.toUpperCase=='POST'){
+                xml.open(method,url,true);
+                xhr.setQuestHeader('Content-type','application/x-www-from-urlencoded')
+                xml.send(data)
+            } else {
+                xml.open(method,url+'?'+data,true);
+                xml.send(data);
+            }
+            //  接收数据
+            xml.onreadystatechange=function(){
+                if (xml.readyState===4&&xml.Status===200) {
+                    fnSucc();
+                }else{
+                    fnFaild();
+                }
+            }
+        }
+    </script>
+</body>
+</html>

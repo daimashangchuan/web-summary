@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			const arr = ['2018-12-20 07:05:12','2018-12-21 13:02:22','2018-12-21 08:03:12','2018-12-19 03:02:12'];
+			function findMaxDate(arr){
+				var newarr = [];
+				for (var i=0; i<arr.length; i++) {
+					newarr.push(new Date(arr[i]).getTime());
+				};
+				var max=newarr[0],min=newarr[0];
+				for (var i = 0; i < newarr.length; i++) {
+				    if(max<newarr[i]){
+				        max=newarr[i];
+				    }
+				    if(min>newarr[i]){
+				        min=newarr[i];
+				    }
+				}
+				return max;
+			}
+			function createTime(msec,select){
+			    var date = new Date(msec);
+			    var y = date.getFullYear();
+			    var m = date.getMonth()+1;
+			    m = m<10?'0'+m:m;
+			    var d = date.getDate();
+			    d = d<10?("0"+d):d;
+			    var h = date.getHours();
+			    h = h<10?("0"+h):h;
+			    var M = date.getMinutes();
+			    M = M<10?("0"+M):M;
+			    var s = date.getSeconds();
+			    s = s<10?("0"+s):s;
+			    if (select) {
+			    	var str = y+"-"+m+"-"+d+" "+h+":"+M+":"+s;
+			    } else{
+			    	var str = y+"年"+m+"月"+d+"日	"+h+":"+M+":"+s;
+			    }
+			    
+			    return str;
+			}
+			console.log(createTime(findMaxDate(arr),true));
+		</script>
+	</body>
+</html>

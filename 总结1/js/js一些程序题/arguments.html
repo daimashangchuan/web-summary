@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var fun1 = function(p1,p2,p3){
+            alert('接收的参数长度为:'+arguments.length);
+            for (var i in arguments) {
+                console.log(arguments[i]);
+            }
+        }
+        alert('fun1的参数长度为:'+fun1.length);
+        fun1('a',2,'c');
+    </script>
+</body>
+</html>

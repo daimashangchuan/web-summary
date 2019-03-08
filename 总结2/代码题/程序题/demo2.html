@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>程序题3</title>
+	</head>
+	<body>
+		<script>
+			var str = 'sunjiwei'
+			String.prototype.spacify = function(){
+				var newStr = this.split('').join(' ');
+				return newStr
+			}
+			console.log(str.spacify())
+		</script>
+		
+		
+		<script>
+			console.log('*********************')
+			
+			function Person(name){
+				this.name = name;
+				return {name}
+			}
+			let p = new Person('Tom');
+			console.log(p instanceof Person)  //  false
+		</script>
+		
+		
+		<script type="text/javascript">
+			console.log('*********************')
+			
+			function create(obj){
+				obj.name = '粉粉';
+				obj = new Object();
+				obj.name = '娇娇'
+			}
+			var person = new Object();
+			create(person);
+			console.log(person.name)   // 粉粉
+		</script>
+		
+		
+		<script type="text/javascript">
+			console.log('*********************')
+			
+			var a = '小旭';
+			(function(){
+				console.log(typeof a);  // undefined
+				console.log(typeof fun1);   //  fn
+				console.log(typeof fun2);   // undefined
+				var a = '旭旭';
+				function fun1(){};
+				var fun2 = function(){};
+				console.log(typeof a);    // string
+				console.log(typeof fun1);   // fn
+				console.log(typeof fun2);   //  fn
+			})(window)
+		</script>
+		
+		
+		<script>
+			console.log('*********************')
+			var foo = {
+				bar:function(){return this.baz},
+				baz:1
+			};
+			(function(){
+				console.log(arguments[0]);   //  function(){return this.baz}
+				console.log(arguments[0].call(foo))   //   1
+			})(foo.bar)
+		</script>
+		
+		
+		<script type="text/javascript">
+			console.log('*******************')
+			function Foo(){
+				getName = function (){console.log(1);}
+				return this;
+			}
+			Foo.getName = function(){console.log(2);}
+			Foo.prototype.getName = function (){console.log(3);}
+			var getName = function(){console.log(4);}
+			function getName(){console.log(5);}
+			
+			Foo.getName();   // 2
+			getName();    //  4
+			Foo().getName();    // 1
+			getName();   //  1
+			new Foo.getName();   //  2
+			new Foo().getName();   //  3
+		</script>
+		
+		
+		<script type="text/javascript">
+			console.log('********************')
+			var start = new Date();
+			setTimeout(function(){
+				var end = new Date();
+				console.log(end - start);
+			},1000)
+			var b = 1;
+			for (var i=0; i<10000; i++) {
+				for (var j=0; j<10000; j++) {
+					b+=i+j;
+				}
+			}
+		</script>
+	</body>
+</html>

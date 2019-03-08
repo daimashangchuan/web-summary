@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			// 列子   实现Person继承Animal
+			/*function Animal(){
+				this.name = 1;
+				this.age = 12;
+				this.eat = function (){};
+				function play(){}
+			}
+			Animal.prototype.handle = function(){
+				console.log(this.name);
+			};
+			function Person(){
+				this.name = 11;
+				this.age = 12;
+			}
+			Person.prototype.getName = function(){
+				console.log(this.name)
+			}
+			var p = new Person();
+			console.log(p);*/
+			
+			//  es5实现
+			/*function Animal(){
+				this.name = 1;
+				this.age = 12;
+				this.eat = function (){};
+				function play(){}
+			}
+			Animal.prototype.handle = function(){
+				console.log(this.name);
+			};
+			function Person(){
+				this.names = 11;
+				this.ages = 125;
+				Animal.call(this);
+			};
+			Person.prototype = Object.create(Animal.prototype)
+			Person.prototype.getName = function(){
+				console.log(this.name)
+			}
+			var f = new Person();
+			console.log(f);*/
+			
+			
+			
+			// es6  类继承
+			class Animal{
+				constructor (){
+					this.name = 1;
+					this.age = 12;
+					this.eat = function(){}
+				};
+				static play (){};
+				handle(){
+					console.log(this.name)
+				}
+			}
+			class Person extends Animal{
+				constructor (){
+					super();
+					this.names = 12;
+					this.ages = 121;
+				};
+				getName(){
+					console.log(this.name)
+				}
+			}
+			let f = new Person();
+			console.log(f)
+		</script>
+	</body>
+</html>

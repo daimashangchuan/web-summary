@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>排序</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var arr = [2,12,5,4,87,5,78,65,23,87];
+			
+			//  冒泡排序 
+			function bubbleSort(arr){
+				for (var i=0; i<arr.length-1; i++) {
+					for (var j=0; j<arr.length-i-1; j++) {
+						if (arr[j]>arr[j+1]) {
+							var temp = arr[j];
+							arr[j] = arr[j+1];
+							arr[j+1] = temp;
+						}
+					}
+				}
+				return arr;
+			}
+			console.log(bubbleSort(arr));
+			
+			
+			//  选择排序    遍历找出最小的放到第一个位置   再遍历剩下的找到最小的放到第二位
+			function selectSort(arr){
+				var min,temp;
+				for (var i=0; i<arr.length-1; i++) {
+					min = i;
+					for (var j = i+1; j<arr.length-1; j++) {
+						if (arr[j]<arr[min]) {
+							min = j
+						}
+					}
+					temp = arr[i];
+					arr[i] = arr[min];
+					arr[min] = temp;
+				}
+				return arr;
+			}
+			console.log(selectSort(arr));
+		
+		
+			//  插入排序   先找一个假定被排序   剩下的合和排序的区比较
+			function insertSort(arr){
+				for(var i=0; i<arr.length; i++){
+					var key = arr[i];
+					var j = i-1;
+					while (j>=0 && arr[j] > key){
+						arr[j + 1] = arr[j];
+						j--;
+					}
+					arr[j + 1] = key;
+				}
+				return arr;
+			}
+			console.log(insertSort(arr));
+			
+			
+			//  快速排序    二分法
+			function quickSort(arr){
+				arr.sort(function(a,b){
+			        return a-b;
+			    });
+			    return arr;
+			}
+			console.log(quickSort(arr));
+			
+			
+			
+		</script>
+	</body>
+</html>

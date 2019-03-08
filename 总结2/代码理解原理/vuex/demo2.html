@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Vuex-mutations</title>
+		<script src="../../node_modules/vue/dist/vue.js"></script>
+		<script src="../../node_modules/vuex/dist/vuex.min.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<h1>{{msg}}</h1>
+			<counter></counter>
+			<a href="javascript:;" @click="add">点击加数量</a>
+			<a href="javascript:;" @click="userName">点击加载用户名</a>
+		</div>
+		<script type="text/javascript">
+//  vuex来实现
+			//  源数据     创建一个组件计算里面的属性
+			const counter = {
+				template:`
+					<div>
+						<div>点击数量:{{ count }}</div>
+						<div>用户名:{{ name }}</div>
+					</div>
+				`,
+				computed:{
+					count(){
+						return this.$store.state.count;
+					},
+					name(){
+						return this.$store.state.name;
+					}
+				}
+			}
+			
+			//  创建一个Vuex实例
+			const store = new Vuex.Store({
+				state:{
+					count:10,
+					name:'孙继伟'
+				},
+				mutations:{
+					increment(state,num){
+						state.count+=num;
+					},
+					updataName(state,userName){
+						state.name=state.name+userName
+					}
+				}
+			})
+			
+			// 创建一个Vue实例
+			new Vue({
+				el:"#app",
+				//  引入一个Vuex的对象
+				store,
+				data:{
+					msg:"Vuex的使用"
+				},
+				methods:{
+					add(){
+						this.$store.commit('increment',10);
+//						store.commit('increment');
+					},
+					userName(){
+						this.$store.commit('updataName','sunjiwei');
+					}
+				},
+				components:{
+					counter
+				}
+			});
+		</script>		
+	</body>
+</html>

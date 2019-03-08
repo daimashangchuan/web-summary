@@ -1,0 +1,1061 @@
+html5有哪些新特新、移除了那些元素？如何处理html5新标签的浏览器兼容问题？如何区分HTML与HTML5？
+	HTML5已形成了最终的标准，它是关于图像，位置，存储，多任务等功能的增加。
+	新增的元素	
+		1.绘画canvas  
+		2.媒体回放video和audio元素       
+		3.本地离线存储localStorage长期存储数据，sessionStorage会话式存储数据
+		4.一些标签元素
+			内容元素：article、footer、header、nav、section
+			表单控件：calender、date、time、email、url、search
+			控件元素：webworker、websockt、Geolocation
+	移除的元素
+		显示层元素：basefont、big、center、font、s、strike、tt、u
+		性能较差元素：frame、frameset、noframes
+	兼容问题
+		1.ie6/7/8支持通过document方法产生的标签，动态添加标签
+		2.使用html5shim框架
+	HTML与HTML5区分？
+		DOCTYPE声明方式区分
+		根据新增的结构、功能元素来区分
+		
+
+css3有哪些新特性？
+	1.css3选择器
+		p:first-of-type    父元素下的第一个元素p
+		p:last-of-type     父元素下的最后一个元素p   
+		p:nth-of-type(n)   父元素下的第n个元素
+	2.@Font-face特性
+		Font-face可以用来加载字体样式，而且它还能够加载服务器端字体文件，让客户端显示
+		客户端所没有安装的字体
+			@Font-face{
+				font-family:BorderWeb;
+				src:url(BORDERWO.eot);
+			}
+			@Font-face{
+				font-family:Runic;
+				src:url(RUNICMTO.eot);
+			}
+			.border{ FONT-SIZE:35px; COLOR:black; FONT-FAMILY:'BorderWeb' }
+			.event{ FONT-SIZE:110px; COLOR:black; FONT-FAMILY:'Runic' }
+		淘宝网字体使用	
+			@Font-face{
+				font-family:iconfont;
+				src:url(//at.alicdn.com/t/font_1454189805_4518812.eot);
+			}
+	3.圆角、阴影、渐变
+		border-radius
+		shadow:text-shadow与box-shadow  水平  垂直   距离   颜色
+		color:-webkit-gradient(linear,0%,0%,100%,0%,from(#2A8BBE),to(#FE280E))
+	4.Transforms 2D效果转化
+		translate 水平
+		rotate    旋转
+		scale     伸缩
+		skew      倾斜
+	5.Transition 特效
+		porperty  属性
+		duration  持续事件
+		timing-function  过度类型
+		delay    延迟时间
+	6.Animation  动画
+		name  time   类型     延时
+
+
+cookie和webStorage的区别？
+	cookie在哪里
+		服务器返回的cookie存储在response的Header里面
+		提交给服务器cookie存储在request的Header里面
+	cookie特点
+		cookie的数量和长度的限制。每个domain最多只能有20条cookie，每条cookie长度不能超过4KB
+		cookie的安全问题。如果cookie比尔拦截，就可以获取所有的session信息
+	区别
+		1.cookie数据在同源的http请求中携带，cookie是浏览器和服务器来回传递的
+		2.cookie数据还是路径（path）的概念，可以限制，cookie值属于某个路径下
+		3.存储大小，cookie数据不能超过4KB，每次http请求都会携带cookie，所以cookie只适合保存很小的数据，如会话标识。
+		4.wbeStroage虽热也有存储大小的限制，但是比cookie大很多，可以达到5M或更大
+		5.数据有效期
+			sessionStorage：在当前的浏览器窗口关闭有效
+			localStorage：始终有效，窗口或浏览器关闭也一直保存，因此用作持久数据
+			cookie：只在设置的cookie过期时间之前一直有效
+		6.作用域不同
+			sessionStorage：不在不同的浏览器窗口中共享，即使是同一个页面
+			localStorage：在所有同源窗口都是共享的
+			cookie：也是在所有的同源窗口中共享的
+		7.webStorage支持事件通知机制，可以将数据更新的通知发生给监听者
+		8.webStorage的API接口使用更方便。
+			webStorage.setitem(key,value) 设置
+			webStorage.getitem(key)  获取
+			webStorage.removeitem(key) 删除单个
+			webStorage.clear() 清楚所有
+	websStorage只能操作字符串对象		
+		
+		
+闭包是什么，有什么特性，优缺点，为什么会内存泄漏？有哪些会造成内存泄漏及解决方式？
+	一个函数内嵌套一个函数，内部函数被函数外部的一个变量引用的时候，就形成闭包
+	闭包的特性(保护和保存)
+		1.保护：外界无法访问闭包内部的数据，如果在闭包内声明变量，外界是无法访问的，
+			          除非闭包主动想外界提供访问接口
+		2.保存：一般的函数，调用完毕后，系统自动注销函数，而对于闭包来说，在外部函数被调用之后，闭包结构依热保存在系统中，
+			   实现对数据的持久使用
+	优点：
+		1.减少全局变量
+		2.减少传递函数的参数量
+		3.封装
+	缺点：
+		闭包会占用内存资源，过多的使用闭包会导致内存溢出等
+	内存泄漏
+	1.为什么内存泄漏
+		浏览器中也是采用自动垃圾回收方法管理内存，但由于浏览器垃圾回收方法有bug，会产生内存泄露。
+		内存泄露是指一块被分配的内存既不能使用，又不能回收，直到浏览器进程结束。
+	2.哪些会造成内存泄漏？
+		js造成内存泄漏的情况
+			1.闭包
+				将函数return出来在IE会造成内存泄漏
+				尽量少用
+			2.意外的全局变量
+				一个变量没有声明相对于window下创建新的变量
+				加一个  "use strict"  严格模式
+			3.定时器setTimeout  setInterval
+				没有及时的清理定时器就会造成内存泄露
+			4.给DOM对象添加属性是一个对象的引用
+				var obj = {}
+				//  没有及时的销毁就会造成内存泄漏
+				document.getElmentById(ID).property = obj;
+				//  解决方法
+				window.onunload = function(){
+					document.getElementById(ID).property = null;
+				}
+ 			5.内到外执行appendChild
+ 				var one = document.cerateElement('div');
+ 				var two = docuemnt.createElement('div');
+ 				document.body.appendChild(one);
+ 				one.appendChild(two);
+ 				// 解决方式
+ 				var one = document.cerateElement('div');
+ 				var two = docuemnt.createElement('div');
+ 				one.appendChild(two);
+ 				document.body.appendChild(one);
+			6.反复重写一个属性会造成内存泄漏(关闭IE内存会释放)
+				for(i=0;i<5000;i++){
+					sun.text = 'sfsfs';
+				}
+				这种方式相当于定义5000个属性
+			7.逻辑错误避免'死循环',一些插件的合理使用
+		vue如何处理
+			1.在mounted/created钩子中绑定DOM/BOM对象中的事件丶使用了第三方库丶定时器或使用$on
+			  需要在beforeDestory中做对应的处理(用$off解绑)
+			2.模板中不要使用表达式来绑定到特定的处理函数,逻辑放在函数中
+			3.在某些组件中模板中使用事件绑定可能会出现泄漏,使用$on替换模板中的绑定
+			
+			
+
+
+websocket和http区别是？
+	webSocket:
+		创建实例
+			url是地址     [protocol]是可选的是否接受子协议
+			new WebSocket(url, [protocol] );
+		事件
+			onopen:连接建立是触发
+			onmessage:服务端接收时触发
+			onerror:连接错误是触发
+			onclose:关闭是触发
+		方法
+			send:连接接收数据
+			close:关闭连接
+	WebSocket是HTML5规范提出的一种协议，基于TCP协议；和http协议是并存的俩种协议
+	规范定义了ws://以及wss://分别表示WebSocket和安全WebSocket连接
+		  http://以及https://差不多
+	WebSocket与Scoket的关系？
+		Socket是传输控制层接口     WebSocket是应用层协议
+	相同点：
+		1.都是一样基于TCP的，都是可靠性传输协议
+		2.都是应用层协议
+	不同点：
+		1.WebSocket是双向通信协议，模拟Socket协议，可以双向发送或接受信息。
+		  http是单向的
+		2.WebSocket是需要浏览器和服务器握手进行建立连接的
+		  http是浏览器发起向服务器的连接，服务器预先并不知道这个连接
+	联系：
+		WebSocket是在建立握手时，数据是通过HTTP传输的。但是建立之后，在真正传输时候是不需要HTTP协议的
+	WebSocket连接的过程是：
+		首先，客户端发起http请求，经过3次握手后，建立起TCP连接；http请求里存放WebSocket支持的版本号等信息，WebSocket-Version等等
+		然后，服务器收到客户端的握手请求后，同样采用HTTP协议回馈数据
+		最后，客户端收到连接成功的消息后，开始借助于TCP传输信道进行全双工通信
+	总结：
+		在WebSocket中，只需要服务器和浏览器通过HTTP协议进行一个握手的动作，然后单独建立一条
+		TCP的通信通道进行数据的传送
+	
+	
+
+
+display:inline-block什么时候会显示间隙？
+	换行或空格会占据一些位置就会形成间隙
+	解决方法：
+		1.html代码中除去当前元素换行或空格
+		2.当前元素的父元素中设置font-size:0;(可能在chorme中不支持)
+		3.当前元素的父元素只设置letter-spaceing:-4px
+	实践中发现的特性：
+		1.block水平的元素inline-block化后，IE6/7没有换行符间隙问题，其他浏览器均有；
+		2.inline水平的元素inline-block后，所有主流浏览器都有换行符/空格间隙问题；
+		3.font-size:0，去除换行符间隙，在IE6/7下残留1像素间隙，Chrome浏览器无效，其他浏览器都完美去除；
+		4.letter-spacing负值可以去除所有浏览器的换行符间隙，但是，Opera浏览器下极限是间隙1像素，0像素会反弹，换行符间隙还原。
+
+
+
+
+简述vuex是什么，在什么情况下使用？(结合代码)
+	什么是vuex？
+		vuex是一个专为vue.js应用程序开发的状态管理模式。只能用于vue.js中
+		管理组件data里的数据
+	vuex专门解决vue.js网络请求开销比较大以及多层嵌套组件之间通信的一种状态管理模式
+	vuex管理状态，将一些公共数据托管在state里，不同的组件都可以拿到这个数据
+	state、mutations，getters，actions，modules
+		Vue.Components通过Dispath去触发Actions
+		用Commit来提交Mutations用来改变State状态
+		最后通过Render返回到Vue.Components组件中
+
+
+
+vue组件之间的交互？分别在什么场景下使用？
+	1.props与$emit
+		父组件向子组件传递数据通过prop，子组件传递数据是父组件通过$emit触发事件来做到的
+		父组件parent和子组件child
+			1.父组件传递了message数据给子组件 props:['message'],通过v-on绑定一个getChildData事件来监听子组件的触发事件
+			2.子组件通过props得到相关的message数据，最后通过this.$emit触发了getChildData事件			
+	2.$attrs和$listeners	
+		解决A组件嵌套B组件，B组件嵌套C组件
+			C组件触发父组件A中的事件
+				this.$emit('getCData',val)
+			C组件触发父组件B中的事件
+				this.$emit('getBData',val)
+			在B组件的模板中C组件绑定  v-bind='$attrs' v-on='listeners' 
+			<C v-bind="$attrs" v-on="$listeners"></C>
+				C组件中能直接触发getCData的原因是在于B组件调用C组件绑定了v-on="$listeners"
+				通过 v-bind="$attrs"，C组件可以直接获取到A组件传递下来的props(除了B组件中props声明的)
+	3.中央事件总线
+		兄弟组件之间传递 新建一个Vue事件bus对象，然后通过bus.$emit触发事件，bus.$on监听事件
+	4.provider和inject
+		父组件中通过provide来提供变量，然后在组件中通过inject来注入变量。
+		不论子组件有多深，只要调用inject那么就可以注入provider中的数据。
+		只要在父组件的生命周期内，子组件都可以调用。
+	
+
+
+一个系统应该如何做多语言的支持？
+	把页面上用到的按钮，提示文字等做成json文件，每种语言一个文件。项目启动的时候根据当前系统语言加载对应的语言，存入全局变量。
+	静态的文字就变成变量，能显示出来不同的语言文字。
+	也可以手动切换语言，直接获取对应的语言文件，然后替换当前存放语言的全局变量就可以
+
+
+
+为什么会有跨域问题？如何解决？
+	浏览器从一个域名的网页去请求另一个域名的资源时，域名、端口、协议任意一个不同都会形成跨域
+		1.端口和协议的不同，只能通过后台来解决
+		2.localhost和127.0.0.1虽然都指向本机，但也属于跨域
+	解决方案
+		1.jsonp跨域
+			往网页添加一个script标签，通过src属性去触发对指定地址的请求，故只能Get请求
+		2.nginx反向代理
+			www.baidu.com/index.html需要调用www.sina.com/server.php，可以写一个
+			接口www.baidu.com/server.php，有这个接口在后端去调用www.sina.com/server.php并拿到返回值
+			然后再返回给index.html
+		3.PHP端修改header
+			header('Access-Control-Allow-Origin:*');  // 允许所有来源访问
+			header('Access-Control-Allow-Method:POST,GET');  // 允许访问的方式
+		4.window.name
+			关键点:window.name在页面的生命周期里共享一个window.name;
+			兼容性:所有浏览器都支持;
+			优点:
+				最简单的利用了浏览器的特性来做到不同域之间的数据传递
+				不需要前端和后端的特殊配制
+			缺点:
+				大小限制:window.name最大是2M左右，不同浏览器约点不同
+				安全性:当前页面所有window都可以修改，很不安全
+				数据类型:传递数据只能限于字符串，如果是对象或者其他会自动被转化五字符串
+		5.postMessage
+			是HTML5引进的一个概念，进行了一些封装，我们可以通过window.postMessage的方式进行使用，并可以监听其发送的消息
+			兼容性:移动端可以放心用，PC端需要降级处理
+			优点:
+				1.不需要后端介入就可以做到跨域，一个函数外加俩个参数(请求url，发送数据)就可以搞定
+				2.移动端兼容性好
+			缺点:
+				1.无法做到一对一的传递方式：监听中需要做很多消息的识别，由于postMessage发出的消息对于同一个页面的
+				     不同功能相当于一个广播的过程,该页面的所有onmessage都会收到，所以需要做消息的判断；
+				2.安全性问题：三方可以通过截获，注入html或者脚本的形式监听到消息，从而能够做到篡改的效果，
+				     必须在postMessage和onmessage中一定要做好这方面的限制；
+				3.发送的数据会通过结构化克隆算法进行序列化，所以只有满足该算法要求的参数才能够被解析，
+				     否则会报错，如function就不能当作参数进行传递；
+				4.使用方式：通信的函数，sendMessage负责发送消息，bindEvent负责消息的监听并处理，可以通过代码来做一个大致了解；
+
+
+
+
+JWT身份认证处理过程？
+	JWT是json web token
+		基于 json 的开放标准，可实现无状态、分布式的Web应用授权
+	JWT的过程
+		1.用户使用账号和密码请求服务器
+		2.服务器进行验证用户的信息，服务端通过验证发送给用户一个 token
+		3.客户端存储 token 每次请求时附送上这个 token值，服务端验证，返回数据
+		4.token必须在每次请求传递，应该保存在请求头里，服务端要支持CORS(跨来源 资源共享)，
+			Access-Control-Allow-Origin
+	JWT的优点
+		跨域 ***Cookie不允许跨域访问，token机制是存在的，但是认证信息通过HTTP头传输
+		无状态 ***不需要session存信息，token自身就代表的所有的登录信息
+		去耦 ***只要API被调用的时候，你就进行 token 生成调用即可
+		更适合移动应用 ***（IOS,Android,Window 8 等），cookie是不被支持的
+		更适合CDN ***内容分发网络			
+		不需要为登录做特殊处理
+	使用
+	iss: jwt签发者
+	sub: jwt所面向的用户
+	aud: 接收jwt的一方
+	exp: jwt的过期时间，这个过期时间必须要大于签发时间
+	nbf: 定义在什么时间之前，该jwt都是不可用的.
+	iat: jwt的签发时间
+	jti: jwt的唯一身份标识，主要用来作为一次性token,从而回避重放攻击。
+	
+		安装
+			npm install （--save）jwt-simple
+		const jwt = require('jwt-simple');
+		const moment = require('moment');
+		//加密过程
+		var getJwt = function(userId，secret){
+		  var expires = moment().add( 7,'days').valueOf();
+		  var token = jwt.encode({
+		    iss: userId,
+		    exp: expires
+		  }, secret);
+		  return token;
+		}
+		//解密过程
+		var testJwt = function(token，secret){
+			//返回{foo: 'bar'}
+		    var decoded = jwt.decode(token,secret)
+		    return decoded;
+		}
+		module.exports = {
+		    create: getJwt,
+		    test: testJwt
+		}
+	
+
+
+
+简述css的盒模型？
+	1.由内容(content)、填充(padding)、边框(border)、边界(margin)组成。
+    2.有两种盒模型：IE盒模型和标准盒模型。
+	    IE:width = content+padding+boder
+		标准:width = content。
+	3.俩种模型的转化
+		box-sizing: content-box 是W3C盒子模型 
+  		box-sizing: border-box 是IE盒子模型
+
+
+如何阻止事件冒泡和默认事件？事件委托的原理及优缺点？
+	原生js中
+		IE浏览器
+			阻止冒泡：window.event.cancelBubble = true
+			取消默认事件：window.event.returnValue = false
+		标准浏览器
+			阻止冒泡：event.stopPropagation()
+			取消默认事件：event.preventDefault()
+	在vue中阻止冒泡与取消默认
+		//   stop阻止冒泡
+		<div @click.stop="show()"></div>
+		//   prevent 取消默认事件
+		<div @click.prevent="show()"></div>
+	事件委托是利用事件冒泡原理来实现的，绑定的事件一级一级的向上执行
+		优点
+			大量节省内存空间，减少事件注册
+			对新增的子元素无需再对其进行事件绑定，对于动态内容部分尤为合适
+		缺点
+			事件代理很多会造成事件误判
+			不该被触发的事件被绑定上了事件
+
+
+瀑布流实现的基本原理？
+	瀑布流就是将用户上传的图片一列一列显示在页面上，但是每张图片高度不一样，
+	如果不按一定规律添加图片，会造成有的一列图片特别长，有的特别短，每次添加
+	的时候都往矮的那个列表添加图片
+
+
+列举原生查找DOM的方法？类型、名、值？节点获取？增删查改？
+	查找DOM的方法
+		document.getElementById(id) 通过ID获取
+		getElementByName(name)   name属性
+		getElementByTagName(标签名)   标签名
+		getElementByClassName(class)  class名
+		querySelector(选择器)  获取一个选择器
+		querySelectorAll(选择器)   获取所有选择器
+		document.documentElement   获取html这个标签
+		document.body   获取body标签
+	类型、名、值
+		元素节点	nodeType：1  nodeName：标签名(大写) nodeValue：null
+		属性节点	nodeType：2  nodeName：属性名                nodeValue：属性值
+		文本节点	nodeType：3  nodeName：#text     nodeValue：文本内容
+		注释节点	nodeType：8  nodeName：#comment  nodeValue：nul
+	节点获取
+		children 当前元素的所有元素子节点
+		parentNode  当前元素的物理结构父节点
+		offsetParent  当前元素的实际定位的父节点
+		previousElementSibling  当前元素的上一个兄弟元素节点
+		nextElementSibling  当前元素的下一个兄弟元素节点
+		firstElementChild   当前元素下的第一个元素节点
+		lastElementChild   当前元素下的最后一个元素节点
+	增删查改
+		appendChild()   后面添加
+		replaceChild()  替换元素(新，旧)
+		insertBefore()  插到指定位置(新，旧)
+		cloneNode(true) 克隆
+
+	
+es6数组的新特性？(ES5 数据属性描述符和存取描述符 https://www.cnblogs.com/snandy/p/5276578.html)
+	数组的循环
+		forEach(function(item,index,arr){})
+		map(function(item,index,arr){})  与return一起使用
+		filter(function(item,index,arr){条件})  返回符合条件的所有对象
+		some(function(item,index,arr){条件})  找到第一个符合条件就返回true
+		every(function(item,index,arr){条件})   有一个不符合条件就返回false 
+	数组的扩展
+		扩展运算符(...)
+		Array.from()  将类数组对象或类数组转化为数组
+		Array.of()   将一组值，转化为数组
+		find(callback,this指向)  所有成员调用回到函数，找到符合条件的返回成员，没有undefined
+		inclides()  数组是否包含了给定的值  返回true和false
+
+
+Generator函数介绍和使用？
+	在function* 函数名(){}
+	是ES6提出来的用来解决异步编程，在内部封装了多个内部状态。
+	调用Generator函数后，该函数并不执行，返回的也不是函数运行结果，而是一个执行内部状态的指针对象，也就相当于遍历器对象。
+	yieid语句是函数的暂停执行      next语句是回复执行
+	yieid* 用来在一个Generator函数里执行另一个Generator函数
+	【注意】如果在遍历数组时，用yield命令将会返回全部都的数组成员，yield* 则返回单个字符：即数组的第一个成员。
+
+
+ArrayBuffer和Array的区别？
+	Array是长度不可改变的数组
+	ArrayBuffer是长度可变的数组
+		创建一个空的ArrayBuffer    new ArrayBuffer[int]()
+		+=操作符 是添加一个元素或多个元素
+		++=操作符 是添加一个集合
+		trimEnd(num) 尾部开始截断指定个数的元素 
+		insert()  指定位置插入元素
+		remove()  移除指定位置的元素 
+	Array与ArrayBuffer可以相互转化
+		a.toArray    转化为Array
+		a.toBuffer   转化为ArrayBuffer
+	
+	
+axios与jQuery的ajax的区别？简述ajax的过程？
+	相同点
+		都是对XMLHttpRequest异步对象的封装
+	不同点
+		jQuery是ajax通过回调函数的形式获取数据的
+		axios是通过Promise对象来获取数据的，这就是axios的最大特点
+	ajax的过程
+		1.创建Ajax对象
+		2.连接服务器，装备数据oAjax.open(方式,地址,是否异步)
+		3.发送请求   oAjax.send();
+		4.接收服务器的返回
+vue-router有哪几种导航钩子？
+	<router-link to='/home'></router-link>  跳转路由   redirect:'/home'(重定向)
+	<router-view></router-view>       组件放到router-view里面
+	主要是用来拦截导航，让他完成跳转或取消
+		1.全局的导航钩子(定义一个路由，在全局配置)
+			to 进入的路由        from  离开的路由     next() 下一个    next(false) 中断    next('/') 中断当前，跳转到不同的路由
+			前置守卫:beforeEach((to,from,next)=>{})
+			后置钩子:afterEach((to,form)=>{})
+		2.单个路由独享的钩子(在路由配置上直接定义)
+			beforeEach()
+		3.组件级的
+			直接在路由组件内部直接定义
+				beforeRouteEnter  不能使用this  
+					解决方法在回调函数加一条  next(vm=>{vm来访问组件实例没有this问题})
+				beforeRouteUpdate
+				beforeRouteLeave
+	完整的导航解析流程
+		1.导航被触发
+		2.在失活的组件里调用离开守卫
+		3.调用全局的beforeEach守卫
+		4.在重用的组件里调用beforeRouteUpdate守卫
+		5.在路由配置里调用beforeEnter
+		6.解析异步组件路由
+		7.在被激活的组件里调用beforeRouteEnter
+		8.调用全局的beforeResolve守卫
+		9.导航被确定
+		10.调用全局的afterEach钩子
+		11.触发DOM更新
+		12.在创建好的实例调用beforeRouteEnter守卫传给next的回调函数
+		
+
+DOM事件？vue的事件绑定和自定义事件绑定？
+	DOM事件
+		DOM0级事件:标签内绑定事件和js中绑定事件
+		DOM2级事件:addEventListener(事件名，func，false冒泡用到)
+				 removeEventListener()
+			事件捕获阶段，目标事件，事件冒泡阶段
+	vue绑定事件
+		通过指令v-on绑定事件
+		自定义事件($on,$once,$off,$emit)
+			vm.$on() 监听当前实例上的自定义事件
+			vm.$once() 监听当前实例上的一个自定义事件   触发后立即移除事件
+			vm.$off() 移除当前实例上的自定义事件监听器
+			vm.$emit() 触发当前实例上自定义事件
+			
+		
+vue的生命周期？
+	创建前/后	beforeCreate/create
+		beforeCreate:vue实例的挂载元素el和数据对象data都为undefined
+		create:vue的实例数据对象data有了，挂载元素el还没有
+	载入前/后	beforeMount/mounted
+		beforeMount:vue实例的$el和data都初始化，单还没有挂载之前为虚拟的dom节点，data，message还未替换
+		mounted:vue实例挂载完成，data message成功渲染
+	更新前/后	beforeUpdate/updated
+		当data发生变化会触发
+	销毁前/后	beforeDestroy/destroy
+		调用$destroy方法后执行beforeDestory:清楚计时器、清楚非指令绑定事件
+		destory做一些善后工作
+
+
+keep-alive是什么？有什么作用？
+	解决在做项目时候列表页面或者搜索结果列表页面，点击详情页之后，返回回来时，不对结果页面进行缓存一下，
+	那么返回的页面会回到初始状态。
+	keep-alive是vue的内置组件，可以使被包含的组件保留状态或避免重新渲染
+		属性
+			include(字符串或正则表达式) 匹配的组件会被缓存
+			exclude(字符串或正则表达式) 匹配的组件不会被缓存
+	keep-alive一般包含router-view来使用
+		如果只想router-view里面某个组件被缓存
+			添加一个router.meta属性
+				meta:{
+					keepAlive:true   缓存
+				}
+			<router-view v-if='$route.meta.keepAlive'></router-view>
+
+
+Flux架构？
+	Flux架构是用户建立客户端的Web应用的前端架构
+	三个部分	
+		1.dispatcher调度
+		2.Store存储
+		3.view视图(React组件)
+
+
+jsp的乱码一般怎么解决？
+	1.文件头是否设置编码格式
+		<meta http-equiv='content-type' content="text/html;charset=UTF-8"/>
+	2.查看项目的编码格式
+		project-》properties
+	3.如果提交表单乱码在请求头响应头设置编码
+		req.setCharacterEncoding('UTF-8');
+		resq.setCharacterEncoding('UTF-8');
+		
+
+http状态码？
+	2开头(请求成功) 表示成功处理了请求的状态代码
+		200   （成功）  服务器已成功处理了请求。 通常，这表示服务器提供了请求的网页。 
+		201   （已创建）  请求成功并且服务器创建了新的资源。 
+		202   （已接受）  服务器已接受请求，但尚未处理。 
+		203   （非授权信息）  服务器已成功处理了请求，但返回的信息可能来自另一来源。 
+		204   （无内容）  服务器成功处理了请求，但没有返回任何内容。 
+		205   （重置内容） 服务器成功处理了请求，但没有返回任何内容。
+		206   （部分内容）  服务器成功处理了部分 GET 请求。
+	3开头 （请求被重定向）表示要完成请求，需要进一步操作。 
+		300   （多种选择）  针对请求，服务器可执行多种操作。 服务器可根据请求者 (user agent) 选择一项操作，或提供操作列表供请求者选择。 
+		301   （永久移动）  请求的网页已永久移动到新位置。 服务器返回此响应（对 GET 或 HEAD 请求的响应）时，会自动将请求者转到新位置。
+		302   （临时移动）  服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。
+		303   （查看其他位置） 请求者应当对不同的位置使用单独的 GET 请求来检索响应时，服务器返回此代码。
+		304   （未修改） 自从上次请求后，请求的网页未修改过。 服务器返回此响应时，不会返回网页内容。 
+		305   （使用代理） 请求者只能使用代理访问请求的网页。 如果服务器返回此响应，还表示请求者应使用代理。 
+		307   （临时重定向）  服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。
+	4开头 （请求错误）这些状态代码表示请求可能出错，妨碍了服务器的处理。
+		400   （错误请求） 服务器不理解请求的语法。 
+		401   （未授权） 请求要求身份验证。 对于需要登录的网页，服务器可能返回此响应。 
+		403   （禁止） 服务器拒绝请求。
+		404   （未找到） 服务器找不到请求的网页。
+		405   （方法禁用） 禁用请求中指定的方法。 
+		406   （不接受） 无法使用请求的内容特性响应请求的网页。 
+		407   （需要代理授权） 此状态代码与 401（未授权）类似，但指定请求者应当授权使用代理。
+		408   （请求超时）  服务器等候请求时发生超时。 
+		409   （冲突）  服务器在完成请求时发生冲突。 服务器必须在响应中包含有关冲突的信息。 
+		410   （已删除）  如果请求的资源已永久删除，服务器就会返回此响应。 
+		411   （需要有效长度） 服务器不接受不含有效内容长度标头字段的请求。 
+		412   （未满足前提条件） 服务器未满足请求者在请求中设置的其中一个前提条件。 
+		413   （请求实体过大） 服务器无法处理请求，因为请求实体过大，超出服务器的处理能力。 
+		414   （请求的 URI 过长） 请求的 URI（通常为网址）过长，服务器无法处理。 
+		415   （不支持的媒体类型） 请求的格式不受请求页面的支持。 
+		416   （请求范围不符合要求） 如果页面无法提供请求的范围，则服务器会返回此状态代码。 
+		417   （未满足期望值） 服务器未满足"期望"请求标头字段的要求。		
+	5开头（服务器错误）这些状态代码表示服务器在尝试处理请求时发生内部错误。 这些错误可能是服务器本身的错误，而不是请求出错。
+		500   （服务器内部错误）  服务器遇到错误，无法完成请求。 
+		501   （尚未实施） 服务器不具备完成请求的功能。 例如，服务器无法识别请求方法时可能会返回此代码。 
+		502   （错误网关） 服务器作为网关或代理，从上游服务器收到无效响应。 
+		503   （服务不可用） 服务器目前无法使用（由于超载或停机维护）。 通常，这只是暂时状态。 
+		504   （网关超时）  服务器作为网关或代理，但是没有及时从上游服务器收到请求。 
+		505   （HTTP 版本不受支持） 服务器不支持请求中所用的 HTTP 协议版本。
+	
+
+前端尝使用库有哪些？常用的前端开发工具？(在githup上搜javascript前150都是常用的)
+	Mock.js  生成随机数据，拦截Ajax请求
+	Animate.css  css动画效果库
+	Velocity.js  js的动画库
+	Lodash.js  js的工具库
+	jQuery  
+	CoffeeScript  JavaScript的转译语言
+	TypeScript JavaScript的转译语言，功能更加强大
+	Less和Sass  是css的转译语言
+	Holder.js  生成占位图片，可自定义大小，颜色及文案
+	
+	Element Ui  基于vue  pc端的UI框架    http://element-cn.eleme.io/#/zh-CN		       
+	MintUi      基于vue 移动端的ui框架    https://mint-ui.github.io/#!/zh-cn
+	mui    需要自己去github上下载和bootstrap
+
+	
+	
+const a = new Foo()中new操作符做了什么？
+	const o = new Object();   //  创建一个新的空对象
+	o.__proto__ = Foo.prototype;  //  o对象__proto__指向函数的原型prototype
+	Foo.call(o);    //  this指向o对象
+	a = o;    //   将o对象赋给a对象
+	
+
+前端性能优化有哪些？
+	1.减少HTTP请求
+		减少HTTP的主要手段是合并CSS、合并javaScript、合并图片
+	2.使用浏览器缓存
+		更新静态资源时，应该分批次的更新
+	3.服务器启用压缩
+		浏览器对文件的压缩  压缩 html css js等等
+	4.css放在页面的最上面,js放在页面的最下面
+		页面加载css时会并行下载 ，加载js时会暂停其他文件先加载自己
+	5.精简css和js文件
+	6.减少DOM的操作
+		修改和访问DOM元素会造成页面的重绘和重排
+	7.使用json格式进行数据交互
+		json是轻量级的数据格式，采用完全独立于语言的文本格式
+	8.减少cookie的传输
+		cookie是本地的磁盘文件，每次浏览器都会去读取响应的cookie
+	9.使用CDN 内容分发网络
+		CDN本质仍然是一个缓存，将数据缓存在离用户最近的地方，使用户以最快的
+		速度获取数据
+
+
+发布/订阅模式的原理？
+	自定义一个事件由多个用户去发布内容触发这一个事件，通过这一个事件去处理这些发布着。
+		例如：用户名，前后顺序等等
+	在nodeJS,有一个eventEmmit的包，它采用的事件发布和订阅模式，eventEmmit可以自定义事件名，并和某些特定的元素绑定。
+	在js中有一个createEvent方法用来创建自定义事件的
+	createEvent的参数最好是event/HTMLEvents
+	initEvent(eventType,canBubble,cancelable)
+		事件类型        是否事件冒泡         是否执行默认事件
+	用来区分定义的事件(window.addEventListener)监听
+		创建名.nameOfInstance = 'instanceName'
+		创建名.createTime = new Date()
+	触发事件 
+		window.dispatchEvnet(创建名)
+
+
+关闭HTML5的from表单自动完成功能？
+	在浏览器输入内容时候，浏览器会从你以前的同名输入框的历史中查找出类似的内容放到输入框下面，有时候希望关闭输入框的自动完成功能。
+	HTML5的输入框有个新属性autocomplete
+		autocomplete设置为on/off   打开或关闭
+	
+
+函数声明与函数表达式的区别？
+	1.函数声明会被提升到当前作用域的顶部，函数表达式则不会
+	2.函数声明一定会有函数名，而函数表达式一般不会有函数名
+	3.函数声明不是一个完整的语句，所以不能出现在if-else，for循环
+
+
+在事件中e.target与e.currentTarget有什么区别？
+	e.currentTarget指的是注册事件监听器的对象，标识事件的当前目标。
+	e.target指的是触发这个事件的对象，标识事件发生的元素
+
+
+IE与FF的兼容问题都有哪些？
+	css兼容问题
+		1.在FF中div设置margin-left和margin-right为auto是居中，在IE不行
+		2.FF：支持!important,IE不支持
+		3.在FF和IE盒模型中解释不一致，相差俩个像素解决方法
+			div{margin:30px!important;margin:28px}
+		
+	js兼容问题
+		1.window.event当前事件对象
+			IE有FF没有     function(ev){var oEvent = ev|event}
+		2.获取事件源
+			IE用srcElement获取事件源，而FF用target获取事件源
+		3.添加和去除事件
+			IE：attachEvent/detachEvent
+			FF：addEventListener/removeEventListener
+		4.标签的自定义属性
+			IE：div.value或div[value]或div.getAttribute('value')
+			FF：div.getAttribute('value')
+		5.innerText与textContent
+			FF：支持textContent
+			IE：支持innerText
+    	6.计算样式
+    		IE是computedStyle 
+    		firefox是getComputedSyle();
+   		7. 滚动事件
+   			IE是MouseWheel
+   			firefox是onmousewheel
+
+
+MVC/MVP/MVVM的区别？
+	MVC模式(View直接从Model中读取数据)
+		MVC是Model-View-Controller的缩写
+			Model模型(对数据的处理方法)、View视图(渲染页面)、Controller控制器(控制应用程序的流程及页面的业务逻辑)
+		MVC特点
+			1.View传送指令到Controller
+			2.Controller完成业务逻辑后，要求Model改变状态
+			3.Model将新的数据发送到View，用户得到反馈
+		MVC流程(俩种)
+			1.通过View接收指令，传递Controller，然后对Model模型进行修改或
+			  查找底层数据，最后把改动渲染在View视图上
+			2.通过Controller接受指令，传递给Controller
+		MVC的优缺点
+			优点
+				1.耦合性低:视图层和业务层分离
+				2.重用性高
+				3.生命周期成本性
+				4.MCV使开发和维护用户接口的技术含量降低
+				5.可维护性高:便于维护和修改
+				6.部署快
+			缺点
+				1.不适合小型，中等规模的应用程序
+				2.视图与控制器间过于紧密连接：联系紧密的部件，视图没有控制器，应用有限
+				3.视图对模型数据的低效率访问：应为接口不同，需要多次调用才能获得足够的显示数据
+		基于MVC模式，AngularJS应运而生
+	MVP模式(View不直接使用Model他们通过Presenter)
+		MVP特点（MVC的改良模式）
+			1.M、V、P双向通信
+			2.Presenter完全把Model和View进行了分离，主要逻辑在Presenter里实现
+			3.Presenter与具体的View没有直接关联，通过定义好的接口，在变View时候presenter
+			  不变，可以重复使用，方便测试。
+		MVP流程
+			View接收到命令传递给Presenter实现完逻辑传递给Model，Model做完改变，再
+			传递给Presenter，最后View视图发生改变
+		MVP优缺点
+			优点	
+				1.Model与View完全分离，我们修改视图不影响模型
+				2.可以重复性的使用Model，交互都在Presenter中
+				3.可以将一个Presenter用于多个视图，不需要改变Presenter逻辑。
+				4.逻辑都在Presenter中，可以脱离用户接口来测试这些逻辑
+			缺点
+				View和Presenter的交互过于频繁，一旦视图改变，Presenter也变更
+		可应用于Android开发
+	MVVM模式
+		MVVM特点
+			立足原有的MVP框架并且把WPF的新特性糅合进去
+			Binding绑定
+			Dependency Property 依赖属性
+			Routed Events  路由事件
+			Command  命令
+			DataTemplate 数据模板
+			ControlTemplate  控制模板
+		MVVM优缺点
+			优点
+				1.低耦合:一个ViewModel可以绑定到不同的View上，当View变化的时候Model可以不变，
+				        Model改变的时候View也不可以不变
+				2.可重用性:将ViewModel放到里面，让很多View重用这段视图逻辑
+				3.独立开发:开发人员可以专注业务逻辑和数据开发，设计人员可以专注页面设计，使用
+						  使用Expression Blend可以很容易设计界面并发生xml代码
+				4.可测试:界面向来比较难于测试的，现在测试可以针对ViewModel来写
+			缺点
+				1.类会增多:每个VC都附带一个ViewModel，类数量*2
+				2.ViewModel会越来越大:逻辑都在ViewModel，Model会变的很复杂，里面属性和方法越来越多。
+				3.调用复杂度增加:数据都是从ViewModel来，找不到真实的模型是谁
+		基于MVVM模式，VueJS开发出来了			
+
+
+Vue、react、angular的特点及优缺点？
+	React专注于使用es6
+		特性
+			1.声明式设计:React采用声明范式，可以轻松描述应用
+			2.高效:React通过对Dom的模式，最大限度地减少与DOM的交互
+			3.灵活:React可以与以知的库或框架很好地配合
+		优点
+			1.速度快：在UI渲染过程中，React通过在虚拟DOM中的微操作来实现对实际DOM的局部更新。
+			2.跨浏览器兼容：虚拟DOM帮助我们解决了跨浏览器问题，它为我们提供了标准化的API，
+			    甚至在IE8中都是没问题的。
+			3.模块化：为你程序编写独立的模块化UI组件，这样当某个或某些组件出现问题是，
+			    可以方便地进行隔离。
+			4.单向数据流：Flux是一个用于在JavaScript应用中创建单向数据层的架构，
+			    它随着React视图库的开发而被Facebook概念化。
+			5.同构、纯粹的javascript：因为搜索引擎的爬虫程序依赖的是服务端响应而不是JavaScript的执行，
+			    预渲染你的应用有助于搜索引擎优化。
+			6.兼容性好：比如使用RequireJS来加载和打包，而Browserify和Webpack适用于构建大型应用。
+			    它们使得那些艰难的任务不再让人望而生畏。
+		缺点
+			React本身只是一个V而已，并不是一个完整的框架，所以如果是大型项目想要一套完整的框架的话，
+			基本都需要加上ReactRouter和Flux才能写大型应用。
+	Vue是es5与es6结合使用
+		特性
+			1.轻量级的框架
+			2.双向数据绑定
+			3.指令
+			4.插件化
+		优点
+			1.简单：官方文档很清晰，比 Angular 简单易学。
+			2.快速：异步批处理方式更新 DOM。
+			3.组合：用解耦的、可复用的组件组合你的应用程序。
+			4.紧凑：~18kb min+gzip，且无依赖。
+			5.强大：表达式 无需声明依赖的可推导属性 (computed properties)。
+			6.对模块友好：可以通过 NPM、Bower 或 Duo 安装，不强迫你所有的代码都遵循 Angular 
+			    的各种规定，使用场景更加灵活。	
+		缺点
+			1. 新生儿：Vue.js是一个新的项目，没有angular那么成熟。
+			2. 影响度不是很大：google了一下，有关于Vue.js多样性或者说丰富性少于其他一些有名的库。
+			3. 不支持IE8
+	Angular依赖于TypeScript
+		特性
+			1.良好的应用程序结构
+			2.双向数据绑定
+			3.指令	
+			4.HTML模板		
+			5.可嵌入、注入和测试
+		优点	
+			1.模板功能强大丰富，自带了极其丰富的angular指令。
+			2.是一个比较完善的前端框架，包含服务，模板，数据双向绑定，模块化，路由，过滤器，依赖注入等所有功能；
+			3.自定义指令，自定义指令后可以在项目中多次使用。
+			4.ng模块化比较大胆的引入了Java的一些东西（依赖注入），能够很容易的写出可复用的代码，对于敏捷开发的团队来说非常有帮助。
+			5.angularjs是互联网巨人谷歌开发，这也意味着他有一个坚实的基础和社区支持。
+		缺点
+			1.angular 入门很容易 但深入后概念很多, 学习中较难理解.
+			2.文档例子非常少, 官方的文档基本只写了api, 一个例子都没有, 很多时候具体怎么用都是google来的, 
+			    或直接问misko,angular的作者.
+			3.对IE6/7 兼容不算特别好, 就是可以用jQuery自己手写代码解决一些.
+			4.指令的应用的最佳实践教程少, angular其实很灵活, 如果不看一些作者的使用原则,很容易写出 四不像的代码,
+			    例如js中还是像jQuery的思想有很多dom操作.
+			5.DI 依赖注入 如果代码压缩需要显示声明.
+		
+
+Vue、react、angular框架的对比？	
+	Vue与Angular的区别
+		相同点
+			都支持指令:内置指令和自定义指令
+			都支持过滤器:内置过滤器和自定义过滤器
+			都支持双向数据绑定
+			都不支持低端浏览器
+		不同点
+			1.AngularJS学习成本高，比如增加了Dependency Injection特性，Vue.js本身提供的API都比较简单、直观。
+			2.在性能
+				AngularJS依赖数据做脏检查，所以Watcher越多越慢
+			  	Vue.js使用基于依赖追踪的观察并且使用异步队列更新，所有的数据都是独立触发的。
+			  	对于庞大的应用来说，这个优化差异还是比较明显的
+	Vue与React的区别
+		相同点
+			1.React采用特殊的JSX语法，Vue.js在组件开发中也推崇编写 .vue 特殊文件格式，对文件内容都有一些约定，
+			    俩者都需要编译后使用
+			2.中心思想相同:一切都是组件，组件实例之间可以嵌套
+			3.都不内置列数AJAX,Route等功能到核心包，而是以插件的方式加载
+			4.在组件开发中都支持mixins的特性
+		不同点
+			Racet依赖Virtual DOM，而Vue.js使用的是DOM模板。React采用的Virtual DOM会对渲染出来的结果做脏检查
+			Vue.js在模板中提供了指令，过滤器等，可以非常方便，快捷地操作DOM
+
+
+
+vue的路由守卫是什么,有哪些有什么作用？
+	分类:守卫分类与路由导航
+	守卫分类
+		全局守卫 beforeEach
+		后置守卫 afterEach
+		全局解析守卫 beforeResolve
+		路由独享守卫 beforEner
+			组内路由守卫
+				beforeRouterEnter
+				beforeRouterUpdata
+				beforeRouterLeave
+	路由导航
+		在当前路由调用 beforeRouterLeace
+		调用 beforeEach
+		在重用组件中调用 beforeRouterUpdate
+		调用 beforEnter
+		解析异步路由组件
+		在激活路由里调用 beforeRouterEnter
+		调用 beforeResolve
+		导航被确认
+		调用全局 afterEach
+		触发DOM更新
+	没一守卫方法接收三个参数
+		to:Router
+		from:Router
+		next:Funtion
+			next() 下一个
+			next(false) 中断
+			next('/')或next({path:"/"})  调到不同地址
+			next(error)  错误会被传递给 router.onError()
+
+
+
+
+
+加载html页面发生什么？什么是重绘和回流，有哪些区别，如何优化？
+	1.浏览器的渲染
+		1.html代码解析为一个DOM树(包含了html标签和js动态添加的元素)，每个分支的根节点就是一个document对象
+		  css解析去掉浏览器不能解析的样式
+		2.html与css结合形成渲染树(渲染树中每个节点都有自己的样式)
+		3.浏览器计算渲染树内对每个渲染节点进行布局处理，渲染完成后显示在屏幕上
+	2.回流
+		当给用户呈现网页中的元素，因为尺寸，位置，布局，隐藏，显示等改变而需要浏览器重新构建的过程
+	3.重绘
+		当给页面中一些元素需要更新属性，这些属性对元素的外观，风格产生影响，就造成重绘。
+	4.回流与重绘区别		
+		回流必将引起重绘，而重绘不一定会引起回流
+	5.优化减少
+		回流和重绘都会造成消耗内存，浏览器的压力会变大，所以浏览器会维护一个队列，把所有引起回流、重绘操作放入这个队列
+		等队列的操作到了一定数量或一定时间间隔的时候，浏览器就会清楚队列
+		但是当我们改变宽高、尺寸和样式请求时，浏览器会强制清楚渲染队列。
+		1.合并多次对样式的修改
+		2.动态改变样式时使用cssText
+		3.将要改变的样式先隐藏，改变完再显示出来
+
+
+浏览器地址加载一个 url 的过程？http://www.cnblogs.com/dinghuihua/p/6674719.html
+	分为俩部分组成
+		用户输入 url 地址  --> 浏览器找拿到服务端的数据
+		浏览器拿到数据  --> 呈现页面(也就是浏览器工作过程)
+	第一部分	
+		1.url分成 协议、网络地址、资源路径三部分
+			协议:从计算机获取资源的方式  http https FTP等 
+				 不同协议有不同的通讯内容格式		 
+			网络地址:指连接网络上的那一台计算机、可以是域名、IP地址，包括端口号
+				“www.cnblogs.com”、“192.168.0.91:8080”
+			资源路径:指从服务器上获取哪一项资源  
+				/dinghuihua/p/6674719.html
+		2.通过DNS解析获得网址的对应IP地址
+			什么是DNS(网域名称系统)？
+				将域名和IP地址绑定,通过域名找到互联网上实际的物理地址的服务器,找到这个服务器,服务器会把请求解析。
+				就可以把关于这一文件的文件推送给浏览器,浏览器渲染。
+			浏览器会开启一个线程处理该请求，同时在远程DNS服务器上启动一个DNS查询，
+			这能使浏览器获得请求对应的IP地址
+		3.浏览器与远程web服务器 通过TCP三次握手协商来建立一个 TCP/IP 连接
+			该握手包括一个“同步报文”，一个“同步-应答报文”和一个“应答报文”，这三个报文在 浏览器和服务器之间传递。
+			该握手首先由客户端尝试建立起通信，而后服务器应答并接受客户端的请求，最后由客户端发出该请求已经被接受的报文。
+		4. 浏览器 通过TCP/IP连接 向web服务器 发送一个 HTTP 请求
+		5.服务器的永久重定向响应（从 http://example.com 到 http://www.example.com）
+		6.浏览器跟踪重定向地址
+		7.服务器处理请求
+		8.服务器返回一个 HTTP 响应	
+			远程服务器找到要请求的资源并使用 HTTP 响应返回该资源，值为 200 的 HTTP 响应状态表示一个正确的响应。
+		9. 到这里便是浏览器的工作过程了。。。
+		　　浏览器显示 HTML
+		　　浏览器发送请求获取嵌入在 HTML 中的资源（如图片、音频、视频、CSS、JS等等）
+		　　浏览器发送异步请求
+	第二部分
+		浏览器拿到资源数据后，便开始浏览器渲染引擎的基本渲染流程
+		渲染引擎开始解析HTML文档，并把标签转化成内容树中的DOM节点。
+		同时它也开始解析样式数据，外链的css文件以及style标签内的样式。
+		所有这些样式数据以及HTML中的可见性指令都是用来创建一棵树
+
+
+
+model.export、和 export default 的区别？
+	1.在 Node 的规范
+		导入
+			var 名称 = require('模块标识符')
+		导出
+			module.export 和  export
+	2.在 ES6 中规范
+		导入
+			import 模板的名称 from 模板的标识符 
+			import 标识符的路径
+		导出 
+			export default   可以使用任意变量来接收，但是在引用中只能使用一次(可以与export一起使用)
+			export 只能使用  {} 形式来接收    可以暴露多个   可以安需接收
+ 								
+
+	
+
+web的XSS和CSRF的攻击是这么实现的，如何防止
+	CSRF 跨站请求伪造
+		概念
+			把命令插入到Web表单的输入域或页面请求的查询字符串，欺骗服务器执行恶意的命令。
+			攻击者通过在应用程序预先定义好的命令结尾加上额外的元素，欺骗数据库服务器执行非授权的查询,篡改命令。
+		解决方式
+			JWT 来解决  用token来做对比
+	XSS 跨站脚本
+		XSS攻击分成两类
+			内部的攻击
+				主要指的是利用程序自身的漏洞，构造跨站语句，如:dvbbs的showerror.asp存在的跨站漏洞。
+			外部的攻击
+				主要指的自己构造XSS跨站漏洞网页或者寻找非目标机以外的有跨站漏洞的网页。
+		解决
+			在页面加载的时候提前将字符串的特殊字符进行html转码，
+			例如&gt; &lt; ) ( " ' % ; &amp; +，进行转码
+
+
+Vue中内置的组件有以下几种?
+	1）component有两个属性---is    inline-template
+		渲染一个‘元组件’为动态组件，按照'is'特性的值来渲染成那个组件
+	2）transition
+		为组件的载入和切换提供动画效果，具有非常强的可定制性，支持16个属性和12个事件
+	3）transition-group  在 for 循环里使用
+		作为多个元素/组件的过渡效果
+	4）keep-alive
+		包裹动态组件时，会缓存不活动的组件实例，而不是销毁它们
+	5）slot
+		作为组件模板之中的内容分发插槽，slot元素自身将被替换
+
+	
+
+
+
+Vue解决跨域问题？
+	proxyTable
+		在脚手架config下index.js中有一个 proxyTable可以添加代理
+	CORS即跨源资源共享
+		var koa = require('koa');
+		//npm install --save koa2-cors
+		var cors = require('koa2-cors');
+		var app = koa();
+		//开启
+		app.use(cors());
+		支持开发和生产环境。但是有一定的安全性问题。
+	后端程序代理
+		proxy:http-proxy-middleware
+		var proxy = require('http-proxy-middleware');
+		var app = express();
+		app.use('/api',proxy({
+			target:"代理路径",
+			changeOrigin:true;
+		}))
+
+
+	
+jquery与vuejs如何混用？
+	一
+		使用Vue.nextTick( [callback, context] )
+		在下次 DOM 更新循环结束之后执行延迟回调
+	二	
+	1.build目录下找到webpack.base.conf.js文件
+		var webpack = require('webpack')
+		plugins: [
+			new webpack.ProvidePlugin({
+				$: "jquery",
+				jQuery: "jquery",
+				jquery: "jquery",
+				"window.jQuery": "jquery"
+			})
+		]
+	2.main.js里导入jQuery
+		import 'jquery'
+	3. .eslintrc.js文件
+		env: {
+			// 原有
+			browser: true,
+			// 添加
+			jquery: true
+		}
+		
+
+
+
+
+
+
+
+

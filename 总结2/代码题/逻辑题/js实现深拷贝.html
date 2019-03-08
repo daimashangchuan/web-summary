@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var objDeepCopy = function (source) {
+			    var sourceCopy = source instanceof Array ? [] : {};			    
+			    for (var index in source) {
+			    	sourceCopy[index] = typeof source[index] === 'object' ? objDeepCopy(source[index]) : source[index];
+			    }
+			    return sourceCopy;
+			}
+			var obj = {
+				a:1,
+				b:2
+			}
+			var arr = [2,3,4];
+			var obj1 = objDeepCopy (obj);
+			var arr1 = objDeepCopy (arr);
+			obj1.a = 10;
+			arr1[1] = 20;
+			console.log(obj1)
+			console.log(arr1)
+		</script>
+	</body>
+</html>

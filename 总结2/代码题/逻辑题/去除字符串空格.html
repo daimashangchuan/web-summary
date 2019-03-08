@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/** 去除字符串的所有空白*/
+			
+			var str = ' asd asdas ada         asdas asdas s   ';
+			function strTrim(str){
+				return str.replace(/\s*/g,'');
+			}
+			console.log(strTrim(str))
+			
+			
+			/** 去除字符串的左右空白*/
+			function trimLeftRight(str){
+				return str.replace(/^\s*|\s$/g,'');
+			}
+			console.log(trimLeftRight(str))
+			
+		</script>
+	</body>
+</html>

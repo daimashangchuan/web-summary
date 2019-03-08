@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">			
+			function findOnly(arr) {
+				var evenCount = 0,oddCount = 0,oddArr=[],evenArr=[];
+				arr.forEach(item=>{
+					if (item%2 == 0) { 
+						evenCount++
+						evenArr.push(item);
+					} else {
+						oddCount++
+						oddArr.push(item);
+					}					
+				})
+				var arr = evenCount>oddCount?oddArr: evenArr;
+				return arr.join('');
+			}
+			var arr = [2,4,0,11,2602,36];
+			var arr1 = [160,3,1719,19,11,13,-21];
+			console.log(findOnly(arr))
+			console.log(findOnly(arr1))
+		</script>
+	</body>
+</html>

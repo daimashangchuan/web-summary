@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var a = [];
+			for (let i=0; i<10; i++) {
+				a[i] = function(){
+					console.log(i)
+				}
+			}
+			a[6]()  
+		</script>
+		
+		<script type="text/javascript">
+		console.log('*******************')
+			var getFn = function(){
+				var arrs = [];
+				for (var i=0;i<3;i++) {
+					arrs.push(function(){
+						return i
+					})
+				}
+				return arrs
+			}
+			var fns = getFn()
+			console.log(fns[0]())
+			console.log(fns[0]()+fns[1]())
+		</script>
+		
+		
+		
+		<script type="text/javascript">
+			var arr = ['a','b','c','d'];
+			
+//			delete arr[1];   //    还有占位     arr[1]  undefined
+
+			arr.splice(1,1)   //  没有占位    arr[1]  c
+			console.log(arr)
+			console.log(arr[1])
+
+		</script>
+		
+		
+		
+		<script type="text/javascript">
+		console.log('**************************')
+			setTimeout(function(){
+				console.log(1);
+			},0);
+			
+			new Promise(function(a,b){
+				console.log(2);
+				for (var i=0; i<10; i++) {
+					i == 9 && a();
+				}
+				console.log(3);
+			}).then(function(){
+				console.log(4);
+			})
+			console.log(5)
+		</script>
+	</body>
+</html>

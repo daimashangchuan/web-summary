@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function addEvent(elem, type, handler){
+        　　if(elem.addEventListener){
+        　　　　elem.addEventListener(type, handler, false);
+        　　}else if(elem.attachEvent){
+        　　　　elem['temp' + type + handler] = handler;
+        　　　　elem[type + handler] = function(){
+            　　　　elem['temp' + type + handler].apply(elem);
+            　　};
+        　　    elem.attachEvent('on' + type, elem[type + handler]);　
+            }else{
+            　　elem['on' + type] = handler;
+            }
+        }
+
+        function addEvent(ele,e,fn){
+            if (ele.addElementListener) {
+                ele.addElementListener(e.fn)
+            } else if(ele.attachEvent){
+                
+                ele.attachEvent('on'+e.fn)
+            } else {
+                ele['on'+e] = fn;
+            }   
+        }
+    </script>
+</body>
+</html>

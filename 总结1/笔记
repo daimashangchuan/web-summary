@@ -1,0 +1,524 @@
+【html&css】
+    一.一些demo例子
+        demo1(实现一行或多行显示省略号)
+        demo2(图片未知高度水平垂直居中)
+        demo3(对after和before运用)
+        demo4
+            content属性的值
+                1.open-quote属性
+                2.close-quote属性
+    二.css自适应布局
+        1.demo1 (左右固定，中间自适应)
+            1.1左右采用浮动  中间采用margin-left和margin-right方法
+            1.2左右采用绝对定位  中间采用margin-left和margin-right方法
+        2.demo2 (右侧固定，左侧自适应)
+            2.1左侧同样用margin-right  右侧采用绝对定位
+            2.2右侧浮动 且 用负margin值
+    三.less，sass应用教程及比较
+        1.demo1(less)
+    四.实现面包屑
+        demo1
+
+
+
+
+扩展:gulp中有一个插件叫做gulp-csso，可以智能合并相同的样式
+
+【html】
+1.浏览器内核私有前缀   
+    gecko内核 (firefox,flock等) -moz
+    webkit内核(safari,chrome等) -webkit
+    opera内核(opera浏览器) -o
+    trident内核(ie浏览器) -ms
+    qq浏览器，搜狗，2345浏览器，360浏览器     
+        双核   trident   webkit  
+2.doctype 是用来干嘛的
+    1.doctype是申明文档类型，告诉浏览器以什么文档类型规范来解析这个文档。
+    2.严格模式的排版和JS运作模式是以该浏览器支持的最高标准执行的。
+    3.混杂模式中，页面以向后兼容的方式显示。模拟老式浏览器的行为以防止站点无法工作。
+    4.doctype不存在或不正确会导致文档以混杂模式呈现。
+3.quirks(怪癖）模式是什么?
+	    没有写DTD(文档定义类型)
+	    怪异模式包括了padding和border
+	    行内元素设置wdith和heigh有效的
+	    父元素没有设置百分比的高度，子元素设置一个百分比的高度无效了
+	    margin:0 auto设置水平居中无效了
+4.img的alt与title有何异同
+    alt在图片加载不出来时呈现(搜索引擎可以通过alt属性的文字来抓取图片)
+    title在图片加载出来提供信息
+5.为什么利用多个域名来存储网站资源会更有效
+    CDN缓存更方便        突破浏览器并发限制        节约cookie带宽
+    节约主域名的连接数，优化页面响应速度            防止不必要的安全问题
+6.CDN是什么？
+    CDN是内容分发网络 采用各种缓存服务器，将用户的访问请求指向距离最近的工作正常的缓存服务器上，
+    由缓存服务器直接响应用户请求。 
+7.cookie 与 webStorage区别？
+    1.  cookie与服务器进行交互的
+        webStorage本地存储数据而生
+    2.  webStorage拥有setItem,getItem,removeItem,clear    
+    3.  cookie 就需要自己封装一些方法
+    4.  webStorage分为sessionStorage和localStorage
+            sessionStorage短暂存储
+            localStorage永久存储
+8.介绍一下盒子模型？
+    1.由内容(content)、填充(padding)、边框(border)、边界(margin)组成。
+    2.有两种盒模型：IE盒子模型和标准w3c盒子模型。
+    3.IE盒模型的content包括了border和padding。
+    4.IE:width = margin+content;标准:width = boder+padding+border。
+9.src和href的区别？
+    href是指网络资源所在位置,建立和当前元素之间的链接
+    src是指向外部资源的位置,引入外部资源,请求时会暂停其他资源的下载和处理 js脚本最好放在底部
+10.说说你对语义化的理解？
+    1.用正确的标签做正确的事。
+    2.让页面内容结构化，便于浏览器、搜索引擎解析。
+    3.在去掉或丢失样式的时候能让页面呈现出清晰的结构。
+    4.有利于搜索引擎的爬虫依赖于标记来确定上下文和各个关键字的权重
+    5.便于团队开发和维护，语义化更具可读性，可以减少差异性。
+11.data-*属性的作用
+        存储私有的自定义的数据
+12.nav、header、section、footer。用来构建模块
+13.说说svg
+    1.svg指可缩放矢量图形
+    2.svg使用xml格式定义图形
+    3.svg图形在放大或改变尺寸的情况下其图形质量不会有所损失。
+14.readyonly与disabled的区别
+    readonly只针对input(text / password)和textarea有效。
+    disabled对于所有的表单元素都有效，当我们将表单以POST或GET的方式提交的话，
+    这个元素的值不会被传递出去，而readonly会将该值传递出去。    
+15.iframe的优缺点？
+    缺点:
+        1.会阻塞主页面的onload事件  解决方法：通过js动态给iframe添加src属性值。
+        2.会增加http请求
+        3.对搜索引擎不友好
+        4.在移动端设备不能完全加载，会出现滚动条，影响用户体验
+    优点:
+        1.解决加载缓慢的第三方内容如图标和广告的加载问题。
+        2.并行加载脚本。
+        3.程序调入静态页面比较方便。
+        4.页面和程序分离。
+16.比较Ajax与Flash的优缺点
+    Ajax的优势：1.可搜索性 2.开放性 3.费用 4.易用性 5.易于开发。
+    Flash的优势：1.多媒体处理 2.兼容性 3.矢量图形 4.客户端资源调度
+    Ajax的劣势：1.它可能破坏浏览器的后退功能 2.使用动态页面更新使得用户难于将某个特定的状态保存到收藏夹中，不过这些都有相关方法解决。
+    Flash的劣势：1.二进制格式 2.格式私有 3.flash 文件经常会很大，用户第一次使用的时候需要忍耐较长的等待时间 4.性能问题
+17.使用link和@import有什么区别？
+    1.link是xhtml标签，除了加载css外，还可以定义RSS等其他事务；@import属于CSS范畴，只能加载CSS
+    2.link引用CSS时候，页面载入时同时加载；@import需要在页面完全加载以后加载，而且@import被引用的CSS会等到引用它的CSS文件被加载完才加载
+    3.link是xhtml标签，无兼容问题；@import是在css2.1提出来的，低版本的浏览器不支持
+    4.link支持使用javascript控制去改变样式，而@import不支持
+    5.link方式的样式的权重高于@import的权重
+    6.import在html使用时候需要<style type="text/css">标签
+18.display有哪些属性值？
+    table-cell 表格单元格 类似td标签
+    inline-table 行元素与块级元素在同一行
+    list-item 元素作为列表来显示  与 list-style-type:lower-latin;
+    -webkit-box  属性有 box-orient | box-direction | box-align | box-pack | box-lines
+19.less，sass，stylus配置和应用教程及三者比较
+    less:css的预处理技术 一种新语言对css增加可编程的特性(变量，混合(mix)，继承，运算，函数等功能)
+    是CSS预处理器,CSS上的一种抽象层。他们是一种特殊的语法/语言而编译成CSS。
+        变量符不一样，less是@，而Sass是$;
+            Sass支持条件语句，可以使用if{}else{},for{}循环等等。而Less不支持;
+            Sass是在服务端处理的，而Less是需要引入less.js来处理Less代码输出Css到浏览器
+20.BFC是什么?
+    块级格式化上下文,建了一个独立的渲染区域
+21.HTML与XHTML——二者有什么区别？
+    1. 所有的标记都必须要有一个相应的结束标记
+    2. 所有标签的元素和属性的名字都必须使用小写
+    3. 所有的 XML 标记都必须合理嵌套
+    4. 所有的属性必须用引号 "" 括起来
+    5. 把所有 < 和 & 特殊符号用编码表示
+    6. 给所有属性赋一个值
+    7. 不要在注释内容中使用 "--"
+    8. 图片必须有说明文字
+22.get与post的区别？
+    1.get是从服务器上获取数据，post是向服务器传送数据。 
+    2.get在url上拼接的 post通过HTTPpost机制
+    3.get小不能大于2KB  post传送的数据量大
+    4.get安全性非常低，post安全性较高
+23.rgba和opacity区别？
+    1.兼容性
+	2.rgba背景透明  opacity所有属性透明
+	3.opacity 有继承性
+24.在HTML代码中如何做SEO？
+    1.h标签合理使用，strong标签语义比较强，合理使用。
+    2.title、<meta name="description" />、<meta name="keywords" />要合理设置
+    3.a标签要写title，img要写alt
+    4.div要有合理类名，比如.content、.header、.address，便于搜索引擎爬虫检索
+    5.HTML层次清晰，id不要重复，便于搜索引擎爬虫检索
+25.重构？
+    网页重构指的是将Table布局的网页变为标准DIV+CSS代码，让结构和表现分离，方便维护
+26 <img src=”name” align=”left”>意思是？
+    图像对于周围的文本左对齐
+27.介绍你所知道的CSS hack技巧
+    _ 和 - 针对IE6，*width、+width用于IE7及以下。
+    color:red\0; 是IE8、9、10的hack。
+    color:red\9\0：是IE9、10的hask
+    还有HTML中：<!--[if lte IE 7]> 代码 <![endif]-->
+28.请列举IE6的一些Bug的解决办法。
+    1.双倍margin：浮动的方向设置的和marign方便不相同即可。
+    2.有链接的图片的边框：img{border:none}即可。
+    3.3px bug ：给容器设置display:inline-block即可。
+    4.overflow:hidden失效，用zoom:1;来解决。
+29.写出5条Firefox和IE的脚本兼容问题？
+    绑定监听：IE是attatchEvent()  、 firefox是addEventListener();
+    计算样式：IE是computedStyle、 firefox是getComputedSyle();
+    滚动事件：IE是MouseWheel、 firefox是onmousewheel
+    表单元素：IE是 document.forms(”formname”) ， firefox是document.forms["formname"]
+    事件对象： IE是window.event属性， firefox必须给事件处理函数注入实参event
+30.对页面进行测试，测试内容主要包括哪几个方面？
+    兼容性、js特效的bug、流畅度、加载速度的测试。
+31.谷歌中字体最小为12px   	
+    -webkit-transform:scale(0.8);
+    用-webkit-text-size-adjust: none;可以解决
+32.什么是响应式设计？响应式设计的基本原理是什么？
+    是一个网站能够兼容多个终端，而不是为每一个终端做一个特定的版本
+    基本原理是通过媒体查询检测不同的设备屏幕尺寸做处理。
+33 ::before 和 :after中双冒号和单冒号有什么区别？
+    单冒号(:)用于CSS3伪类，双冒号(::)用于CSS3伪元素。
+    。
+    并不存在于dom之中，只存在在页面之中。::before就是以一个子元素的存在，定义在元素主体内容之前的一个伪元素
+34.li与li之间有看不见的空白间隔是什么原因引起的？有什么解决办法？
+    行框的排列会受到中间空白（回车空格）等的影响
+        1.可以将<li>代码全部写在一排
+        2.浮动li中float：left
+        3.在ul中用font-size：0（谷歌不支持）；可以使用letter-space：-3px
+35.display:inline-block 什么时候会显示间隙？
+    1.有空格时候会有间隙 解决：移除空格
+    2.margin正值的时候 解决：margin使用负值
+    3.使用font-size时候 解决：font-size:0、letter-spacing、word-spacing
+
+	
+
+
+
+
+
+
+
+
+
+
+【html5 & css3】
+    demo1(css圆形缩放动画)
+    demo2()
+1.怎样理解HTML5？
+    （1）、在前端领域H5是一个技术集合（技术栈），而不是单纯的一个技术点，所以不能理解是一个html的规范。
+    （2）、我们可以从html、css、js三个方面进行梳理
+        html:语义化标签、新增表单类型、新增表单属性
+        css：新增选择器、过渡、转换、动画、媒体查询
+        js:canvas绘图、ES6
+    （3）、从职能理解H5的开发
+        移动web的开发
+        响应式开发
+        单页面应用开发
+        混合APP开发
+        微信小程序
+        微信公众号开发
+2、CSS3有哪些新的特性？
+    (1)、RGBA和透明度
+    (2)、background-image、background-origin、background-size、background-repeat
+    (3)、word-wrap(对长的不可分割的单词进行换行)word-wrap:break-word;  
+    (4)、文字阴影：text-shadow：5px 5px 5px #ccc;（水平阴影，垂直阴影，模糊距离，阴影颜色）
+    (5)、font-face：自定义自己的字体
+    (6)、圆角（边框半径）：border-radius 属性用于创建圆角
+    (7)、盒阴影box-shadow:5px 5px 5px #ccc;
+    (8)、媒体查询：定义两套css，当浏览器的尺寸变化时会采用不同的属性
+3.a标签的target="__blank"的安全漏洞问题
+    1.nofollow 告诉浏览器搜索引擎，不要将该链接计入权重
+    2.external 告诉浏览器搜索引擎，这个链接不是本站链接
+    3.external nofollow 这个链接非本站链接，不要爬取也不要传递权重
+    4.target="__blank"要增加 rel="nofollow noopener noreferrer" 来堵住钓鱼安全漏洞。
+4.css3的box-sizing有哪些特性
+	box-sizing属性可以分为两个值：content-box（default），border-box。
+		content-box，border和padding不计算入width之内
+		border-box，border和padding计算入width之内
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+【js基础】
+    1.es6新增的数据类型？
+        Symbol 表示独一无二的值
+        创建 Symbol 值通过Symbol函数生成
+        let firstName = Symbol();
+    2.IE和标准下有哪些兼容性的写法
+        var ev = ev || window.event
+        document.documentElement.clientWidth || document.body.clientWidth
+        var target = ev.srcElement||ev.target
+    3.call和apply的区别
+        Object.call(this,obj1,obj2,obj3)
+        Object.apply(this,arguments)
+    4.如何阻止事件冒泡
+        ie:阻止冒泡ev.cancelBubble = true;
+                      非IE ev.stopPropagation();  
+    5.解释jsonp的原理，以及为什么不是真正的ajax？
+        Ajax的核心是通过XMLHttpRequest获取数据。
+        JSONP的核心则是动态添加<script>标签来调用服务器提供的js文件。
+        Ajax与JSONP的区别也不在于是否跨域，
+            1.Ajax通过服务端代理也可以跨域。
+            2.JSONP也可获取同源数据。
+                    【动态加载script不会阻碍程序的向下执行，直接写的话在有些浏览器里当这个script加载并执行完之前是不会去执行下边的代码的】
+    6.new操作符具体干了什么呢?
+        1、创建一个空对象，并且 this 变量引用该对象，同时还继承了该函数的原型。
+        2、属性和方法被加入到 this 引用的对象中。
+        3、新创建的对象由 this 所引用，并且最后隐式的返回 this 。
+    7. js延迟加载的方式有哪些？
+        script中的defer属性 script.js 的执行要在所有元素解析完成之后 事件触发之前
+        script中的async属性 执行一个异步操作
+    8.程序中捕获异常的方法？
+        try{}catch(e){}finally{}    
+    9.解释什么是Json？
+        1.JSON 是一种轻量级的数据交换格式。
+        2.JSON 独立于语言和平台，JSON 解析器和 JSON 库支持许多不同的编程语言。
+        3.JSON的语法表示三种类型值，简单值(字符串，数值，布尔值，null),数组，对象
+    10.浏览器的滚动距离？
+        scrollTop=document.documentElement.scrollTop||document.body.scrollTop
+    11.可视区的大小？
+        1.innerXXX（不兼容ie）
+        window.innerHeight 可视区高度，包含滚动条宽度
+        window.innerWidth  可视区宽度，包含滚动条宽度
+        2.document.documentElement.clientXXX(兼容ie)
+        document.documentElement.clientWidth可视区宽度，不包含滚动条宽度
+        document.documentElement.clientHeight可视区高度，不包含滚动条宽度
+    12.节点的种类有几种，分别是什么？
+        1.元素节点：nodeType ===1;nodeName:大写的便签名     nodeValue:null
+        2.属性节点：nodeType ===2;         属性名                    属性值
+        3.文本节点：nodeType ===3;         #text                    文本内容
+        4.注释节点：nodeType ===8;         #comment                 注释内容
+    13.innerHTML和outerHTML的区别？offsetWidth offsetHeight和clientWidth clientHeight的区别？
+        1.  innerHTML(元素内包含的内容）
+            outerHTML(自己以及元素内的内容）
+        2.  offsetWidth （content宽度+padding宽度+border宽度）
+            offsetHeight（content高度+padding高度+border高度）
+            clientWidth（content宽度+padding宽度）
+            clientHeight（content高度+padding高度）
+    13.Js的内存回收机制
+        函数在执行的时候系统会这个函数分配一个内存空间，调用完这个函数对应的内存空间也就被回收了。
+        垃圾回收有2种基本方式:标记清除,引用计数
+    14.什么是闭包？闭包的优缺点？
+        函数内部可以直接读取全局变量，但是在函数外部无法读取函数内部的局部变量。
+        在函数内部声明变量的时候，一定要使用var命令
+        闭包就是能够读取其他函数内部变量的函数。
+            优点:保护，保存,命名冲突
+            缺点:变量都被保存在内存中，内存消耗很大
+                 在IE中可能导致内存泄露(在退出函数之前，将不使用的局部变量全部删除。)
+    15.JavaScript和ASP脚本相比，哪个更快？
+        JavaScript是一种客户端语言，因此它不需要Web服务器的协助来执行
+        ASP是服务器端语言，因此总是比JavaScript慢
+        但是现在有nodejs所以Javascript现在也可用于服务器端语言
+    16.定时器的缺点？
+        定时器在一个线程内运行，因此事件可能需要排队等待执行。
+    17.ViewState和SessionState有什么区别？
+        ViewState特定的会话页面。
+        SessionState在Web应用程序中的所有页面上访问的用户特定数据。
+    18.什么是===运算符？
+        ===被称为严格等式运算符，比较值和数据类型
+        当两个操作数具有相同的值而没有任何类型转换时，该运算符返回true  。
+    19.delete操作符的功能是什么？
+        delete操作符用于删除程序中的所有变量或对象，但不能删除使用VAR关键字声明的变量。
+    20.Void（0）怎么用？
+        Void（0）用于调用另一种方法而不刷新页面
+    21.JavaScript中不同类型的错误有几种？
+        Load time errors：该错误发生于加载网页时，例如出现语法错误等状况，称为加载时间错误，并且会动态生成错误。
+        Run time errors：由于在HTML语言中滥用命令而导致的错误。
+        Logical Errors：这是由于在具有不同操作的函数上执行了错误逻辑而发生的错误。
+    22.在web-garden和web-farm之间有何不同？
+        web-garden和web-farm都是网络托管系统。
+        区别: web-garden是在单个服务器中包含许多处理器的设置。
+              web-farm是使用多个服务器的较大设置。
+    23.decodeURI（）和encodeURI（）是什么？
+        EncodeURl（）用于将URL转换为十六进制编码。
+        DecodeURI（）用于将编码的URL转换回正常。
+    24.为什么不建议在JavaScript中使用innerHTML？
+        innerHTML内容每次刷新，因此很慢。 在innerHTML中没有验证的余地，
+        因此，更容易在文档中插入错误代码，从而使网页不稳定。
+
+
+【js进阶】
+1.前端templating(Mustache, underscore, handlebars)是干嘛的, 怎么用?
+        Web 模板引擎是为了使用户界面与业务数据（内容）分离而产生的，
+        Mustache 是一个 logic-less （轻逻辑）模板解析引擎，它的优势在于可以应用在 Javascript、PHP、Python、Perl 等多种编程语言中。
+        Underscore封装了常用的JavaScript对象操作方法，用于提高开发效率。
+        Handlebars 是 JavaScript 一个语义模板库，通过对view和data的分离来快速构建Web模板。
+2.Handlebars 的基本用法？
+        Handlebars模板引擎
+        模板引擎拼接接受到的JSON字符串,展现到页面的地步
+3.我们给一个dom同时绑定两个点击事件，一个用捕获，一个用冒泡，你来说下会执行几次事件，然后会先执行冒泡还是捕获
+        捕获阶段事件 -> 本元素代码顺序事件 -> 其他元素冒泡阶段事件 
+4.直接在对象的原型上添加方法是否安全？尤其是在Object对象上。
+        1 防止冲突   项目不是一个人在开发
+        2 不易定位错误位置    调错会很难
+        3 防止代码向上不兼容 
+5.函数声明与函数表达式的区别？
+        解析器会率先读取函数声明，并使其在执行任何代码之前可用，
+        函数表达式，则必须等到解析器执行到它所在的代码行，才会真正被解析执行。
+6.什么是伪数组？伪数组转化为数组？
+        var arr = Array.prototype.slice.call(arrli);
+        var arr = Array.from(arrli);
+        var arr = [...arrli];
+7.实现一个对页面某个节点的拖曳？
+        1. 给需要拖拽的节点绑定mousedown, mousemove, mouseup事件
+        2. mousedown事件触发后，开始拖拽
+        3. mousemove时，需要通过event.clientX和clientY获取拖拽位置，并实时更新位置
+        4. mouseup时，拖拽结束 释放mousedown事件
+        5. 需要注意浏览器边界的情况
+8.作用域链？
+        函数内部访问变量时候，这个变量没有声明，就一级一级的向上走，最后找到window，还有就返回一个undefined   
+9.严格模式 "use strict"  
+        严格模式下无法删除变量。只有configurable设置为true的对象属性，才能被删除
+        正常模式下，对一个对象的只读属性进行赋值，不会报错，只会默默地失败。严格模式下，将报错。
+        正常模式下，如果对象有多个重名属性，最后赋值的那个属性会覆盖前面的值。严格模式下，这属于语法错误。
+        正常模式下，如果函数有多个重名的参数，可以用arguments[i]读取。严格模式下，这属于语法错误。
+        正常模式下，整数的第一位如果是0，表示这是八进制数，比如0100等于十进制的64。严格模式禁止这种表示法，整数第一位为0，将报错。
+10.instanceof   constructor作用？
+        判断一个对象是否属于某个类  实例指向的构造函数
+11.模块化开发怎么做？
+        浏览器端requirejs，seajs；
+        服务器端nodejs；
+        ES6模块化；
+        webpack等前端整体模块化解决方案；   
+        grunt、gulp等前端工作流的使用
+12.requirejs，seajs 是什么？
+        RequireJS 和 SeaJS 是模块加载器    
+            1.执行模块的机制大不一样
+            2.SeaJS执行CMD 推崇依赖就近，RequireJS执行AMD 推崇依赖前置。
+                实现js文件的异步加载，避免网页失去响应；
+                管理模块之间的依赖性，便于代码的编写和维护。
+13.异步加载的方式有哪些？
+        方案一：<script>标签的async="async"属性（详细参见：script标签的async属性）
+        方案二：<script>标签的defer="defer"属性
+        方案三：动态创建<script>标签
+        方案四：AJAX eval（使用AJAX得到脚本内容，然后通过eval_r(xmlhttp.responseText)来运行脚本）
+        方案五：iframe方式
+14.JS 怎么实现一个类。怎么实例化这个类
+        不过js中的函数可以作为构造函数来使用，通过new来实例化，其实函数本身也是一个对象。
+15.如何编写高性能的Javascript？
+        使用 DocumentFragment 优化多次 append
+        通过模板元素 clone ，替代 createElement
+        使用一次 innerHTML 赋值代替构建 dom 元素
+        使用 firstChild 和 nextSibling 代替 childNodes 遍历 dom 元素
+        使用 Array 做为 StringBuffer ，代替字符串拼接的操作
+        将循环控制量保存到局部变量
+        顺序无关的遍历时，用 while 替代 for
+        将条件分支，按可能性顺序从高到低排列
+        在同一条件子的多（ >2 ）条件分支时，使用 switch 优于 if
+        使用三目运算符替代条件分支
+        需要不断执行的时候，优先考虑使用 setInterval
+16.eval是做什么的？
+        将字符串解析为js代码运行
+        应该避免使用eval，不安全，非常耗性能    
+17.简述一下你对web性能优化的方案？
+        1、尽量减少 HTTP 请求
+        2、使用浏览器缓存
+        3、使用压缩组件
+        4、图片、JS的预载入
+        5、将脚本放在底部
+        6、将样式文件放在页面顶部
+        7、使用外部的JS和CSS
+        8、精简代码
+18.setInterval（fn1,500）与setInterval（fn1(),500）有什么区别？
+        第一个是重复执行每500毫秒执行一次，后面一个只执行一次。
+    19.ajax清除缓存？
+        anyAjaxObj.setRequestHeader("Cache-Control","no-cache")。
+        $.ajaxSetup({cache:false})。
+19.onload事件支持那些标签
+	<body>, <frame>, <frameset>, <iframe>, <img>, <link>, <script>
+	等DOM树构建完成   所有资源加载完之后 执行 onload
+20.document.write 与 innerHTML 的区别？
+	document.write是直接将内容写入页面的内容流，会导致页面全部重绘，
+	innerHTML将内容写入某个DOM节点，不会导致页面全部重绘		
+
+
+
+
+
+
+
+【js不常见的问题】
+    1.线程与进程的区别？
+	        一个程序至少有一个进程，一个进程至少有一个线程。
+	        线程的划分尺度小于进程，使得多线程程序的并发性高。
+	        进程在执行过程中拥有独立的内存单元，而多个线程共享内存，从而极大地提高了程序的运行效率。
+	        线程有一个程序运行的入口、顺序执行序列和程序的出口。
+	        线程不能够独立执行，必须依存在应用程序中。
+    2.如何对网站的文件和资源进行优化？
+                文件合并文件最小化/文件压缩使用CDN托管缓存的使用（多个域名来提供缓存）
+    3.三种减少页面加载时间的方法？
+        1.对图片标明高度和宽度
+        2.优化css样式
+        3.减少http请求(合并文件,合并图片)   
+    4.使用Tab来缩进代码
+        1.使用&nbsp这种格式规范
+        2.保持一致性,接收项目原有的风格
+        3.使用VIM的retab命令
+    5.什么是FOUC（无样式内容闪烁）？
+        1.<style type="text/css" media="all">@import"../fouc.css";</style>而引用CSS文件的@import就是造成这个问题的罪魁祸首。
+        2.解决方案:<head>之间加入一个<link>或者<script>元素就可以了
+    6.网页内容需要支持多语言?
+        1.应用字符集的选择，选择UTF-8编码
+        2.语言书写习惯&导航结构
+        3.数据库驱动型网站
+    7.如何优化网页的打印样式？
+        <link rel = "stylesheet" type = "text/css" media = "screen" href = "xxx.css"/>
+                显示器上就是screen，打印机则是print，电视是tv，投影仪是projection
+    8.如何清除ajax的浏览器的缓存
+    	js
+    		在Ajax发送请求前加上anyAjaxObj.setRequestHeader("If-Modified-Since", "0")。
+			在Ajax发送请求前加上anyAjaxObj.setRequestHeader("Cache-Control", "no-cache")。	
+			在URL后加上一个随机数："fresh=" + Math.random();。
+			在URL后加上时间搓："nowtime=" + new Date().getTime();。
+    	jQuery
+	 	cache:false   ifModified :true   
+	9.函数的节流与函数的防抖场景与原理？
+		节流
+			滚动浏览器滚动条的时候，更新页面上的某些布局内容
+			事件要触发很多次，降低这种的频率。
+			节流就是保证一段时间内只执行一次核心代码
+		防抖
+			搜索框，上拉加载，全频滚动
+			在一定时间段的连续函数调用，只让其执行一次
+	10.判断数据类型的方法？
+		有4种 typeof，instanceof，constructor，is	
+		is
+			Array.prototype也是数组
+		constructor	
+			var f = new F();
+			f.constructor == F  true
+			在 unll 和 undefined 是无效的
+	
+	11. window的hashchange事件 
+			hash值的变化会直接反应到浏览器地址栏(#后面的部分会发生变化),浏览器地址栏hash值的变化就会触发			
+		window.onload事件
+			页面上所有的DOM，样式表，脚本，图片，flash都已经加载完成了。
+		window.DOMContentLoaded   
+			仅当DOM加载完成，不包括样式表，图片，flash。
+	12. for in 与 for of的区别？
+		for in 也可以遍历数组，但是会存在以下问题：
+			1.index索引为字符串型数字，不能直接进行几何运算
+			2.遍历顺序有可能不是按照实际数组的内部顺序
+			3.使用for in会遍历数组所有的可枚举属性，包括原型。例如上栗的原型方法method和name属性
+			4.所以for in更适合遍历对象，不要使用for in遍历数组。
+		for...of正常遍历的，都需要实现一个遍历器Iterator。
+			而数组、字符串、Set、Map结构，早就内置好了Iterator
+			Object对象并没有实现这个接口，使得它无法被for...of遍历
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+

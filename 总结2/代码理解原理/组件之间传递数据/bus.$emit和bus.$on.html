@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="vue.min.js"></script>
+	</head>
+	<body>
+		<div id="app"></div>
+		<script type="text/javascript">
+			Vue.component('brother1',{
+		        data(){
+		            return {
+		                mymessage:'hello brother1'
+		            }
+		        },
+		        template:`
+		            <div>
+		                <p>this is brother1 compoent!</p>
+		                <input type="text" v-model="mymessage" @input="passData(mymessage)"> 
+		
+		            </div>
+		        `,
+		        methods:{
+		            passData(val){
+		                //触发全局事件globalEvent
+		                bus.$emit('globalEvent',val)
+		
+		            }
+		        }
+		    })
+		    Vue.component('brother2',{
+		        template:`
+		            <div>
+		                <p>this is brother2 compoent!</p>
+		                <p>brother1传递过来的数据：{{brothermessage}}</p>
+		            </div>
+		        `,
+		        data(){
+		            return {
+		                mymessage:'hello brother2',		
+		                brothermessage:'sunjiwei'
+		            }
+		        },
+		        mounted(){
+		            //绑定全局事件globalEvent
+		            bus.$on('globalEvent',(val)=>{
+		                this.brothermessage=val;
+		            })
+		        }
+		    })
+		    //中央事件总线
+		    var bus=new Vue();
+		
+		    var app=new Vue({
+		        el:'#app',
+		        template:`
+		            <div>
+		                <brother1></brother1>
+		                <brother2></brother2>
+		            </div>
+		        `
+		    })
+		</script>
+	</body>
+</html>

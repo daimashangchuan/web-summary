@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/*function numNext(next){
+				var num = 10;
+				for (var i=0; i<next-1; i++) {					
+					num += 2;
+				}				
+				return num
+			}
+			console.log(numNext(8));*/
+			
+			
+			function numNext(n){
+				if (n==1) {
+					return 10
+				} else{
+					return numNext(n-1)+2
+				}
+			}
+			console.log(numNext(8))
+		</script>
+	</body>
+</html>

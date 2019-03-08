@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let s = Symbol(); //s是独一无二的值
+        console.log( typeof s) // symbol　 
+
+        var s1 = Symbol('s1');
+        var s2 = Symbol('s2');
+        console.log(s1,s2); // Symbol(s1) Symbol(s2)
+
+        var ss = Symbol();
+        var obj = {};
+        obj.ss = 'Jack';
+        console.log(obj); // {s: "Jack"}
+        obj[ss] = 'Jack';
+        console.log(obj) ; //{Symbol(): "Jack"}
+
+        // Symbol.for() 首先会在全局环境中查找给定的 key 是否存在，如果存在就返回，
+        // 否则就创建一个以 key 为标识的 Symbol 值
+        // Symbol.for()  永远搜索不到 用 Symbol() 产生的值
+        var s = Symbol('foo');
+        var s1 = Symbol.for('foo');
+        s === s1; // false
+
+        // Symbol.keyFor() 方法返回一个已在全局环境中登记的 Symbol 类型值的 key 。
+        var s1 = Symbol.for('s1');
+        Symbol.keyFor(s1); //foo
+        var s2 = Symbol('s2'); //未登记的 Symbol 值
+        Symbol.keyFor(s2); //undefined
+    </script>  　
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+	    function Person(){
+			this.age = 100;
+		}
+		var person1 = new Person;
+		// isPrototypeOf()  判断实例是否在构造函数的原型上
+		var isPrototype = Person.prototype.isPrototypeOf(person1);　　//true
+		console.log(isPrototype)
+		// Object.getPrototypeOf()  实例是否在构造函数的原型链上
+		console.log(Object.getPrototypeOf(person1) == Person.prototype)
+		// hasOwnProperty()　判断属性是否是存在于自己的实例中
+		person1.hasOwnProperty("age");　　//fales　　因为age是原型的属性，而不是自己实例的属性
+		// Object.keys()　　如果你想要获得所有实例属性，并仅需可枚举的
+		var keys1 = Object.keys(Person.prototype);
+　　	console.log(keys1);　　//"age"
+		// Object.getOwnPropertyName()　　如果你想要获得所有实例属性	
+	    var keys2 = Object.getOwnPropertyNames(Person.prototype);
+　　	console.log(keys2);　　//"constructor, age"
+	</script>
+</body>
+</html>

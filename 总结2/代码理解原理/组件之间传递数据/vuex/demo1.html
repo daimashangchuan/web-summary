@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Vuex</title>
+		<script src="../vue.min.js"></script>
+		<script src="../vuex.min.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<h1>{{msg}}</h1>
+			<counter></counter>
+			<!--<counter :count="count"></counter>-->
+		</div>
+		<script type="text/javascript">
+//  vuex来实现
+			//  源数据     创建一个组件计算里面的属性
+			const counter = {
+				template:`
+					<div>{{ count }}</div>
+				`,
+				computed:{
+					count(){
+						return this.$store.state.count;
+					}
+				}
+			}
+			
+			//  创建一个Vuex实例
+			const store = new Vuex.Store({
+				state:{
+					count:10
+				}
+			})
+			
+			// 创建一个Vue实例
+			new Vue({
+				el:"#app",
+				//  引入一个Vuex的对象
+				store,
+				data:{
+					msg:"Vuex的使用"
+				},
+				components:{
+					counter
+				}
+			});
+			
+//  父子组件实现			
+			/*//  源数据     创建一个组件计算里面的属性
+			const counter = {
+				template:`
+					<div>{{ count }}</div>
+				`,
+				props:['count']
+			}
+			
+			//  创建一个Vuex实例
+			const store = new Vuex.Store({
+				state:{
+					count:10
+				}
+			})
+			
+			// 创建一个Vue实例
+			new Vue({
+				el:"#app",
+				data:{
+					msg:"Vuex的使用",
+					count:15
+				},
+				components:{
+					counter
+				}
+			});*/
+		</script>		
+	</body>
+</html>

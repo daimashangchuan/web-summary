@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        define(function(require, exports, module) {
+            console.log('require module: main');
+            var mod1 = require('./mod1');
+            mod1.hello();
+            var mod2 = require('./mod2');
+            mod2.hello();
+            return {
+                hello: function() {
+                    console.log('hello main');
+                }
+            };
+        });
+        /**
+        CMD执行
+        require module: main
+        require module: mod1
+        hello mod1
+        require module: mod2
+        hello mod2
+        hello main
+        */  
+        /**
+        AMD
+        require module: mod1
+        require module: mod2
+        require module: main
+        hello mod1
+        hello mod2
+        hello main
+        */
+    </script>
+</body>
+</html>
